@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#171512">
+<meta name="description" content="Manual de campo e arsenal de comandos do servidor Zack Zanni TF2."><title>Zack Zanni Servidor Oficial | Brasil | Casual • 4Fun</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Roboto+Condensed:wght@400;500;600;700&family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+/* Fonts oficiais TF2: coloque os arquivos em assets/fonts/ no GitHub. */
+@font-face{font-family:"TF2 Build";src:url("assets/fonts/tf2build.ttf") format("truetype");font-weight:100 900;font-style:normal;font-display:swap}
+@font-face{font-family:"TF2 Secondary";src:url("assets/fonts/tf2secondary.ttf") format("truetype");font-weight:100 900;font-style:normal;font-display:swap}
+@font-face{font-family:"TF2";src:url("assets/fonts/tf2.ttf") format("truetype");font-weight:100 900;font-style:normal;font-display:swap}
+:root{color-scheme:dark;--red:#b83225;--red2:#ef5942;--blu:#3978a8;--gold:#e6b94d;--bg:#11100e;--panel:#1b1915;--line:#494034;--text:#eee5d5;--soft:#bdb3a2;--muted:#8d8271;--title:'TF2 Build','Oswald',Impact,sans-serif;--body:'TF2 Secondary','Roboto Condensed',Arial,sans-serif;--ease:cubic-bezier(.2,.75,.25,1)}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth;scrollbar-color:#695334 #11100e;scrollbar-width:thin}body{min-height:100vh;overflow-x:hidden;background:radial-gradient(ellipse at 50% -10%,#46321f 0,transparent 55%),#11100e;color:var(--text);font-family:var(--body);-webkit-font-smoothing:antialiased}body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:20;opacity:.035;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E")}
+::selection{background:var(--red);color:#fff}button,input{font:inherit}button:focus-visible,input:focus-visible{outline:2px solid var(--gold);outline-offset:3px}.container{width:min(1160px,91%);margin:auto}
+.topbar{height:38px;display:flex;justify-content:space-between;align-items:center;padding:0 4.5%;background:#0b0b09;border-bottom:1px solid #302b23;color:var(--muted);font-size:10px;font-weight:700;letter-spacing:1.5px}.top-left{display:flex;align-items:center;gap:10px}.status{width:7px;height:7px;border-radius:50%;background:#94bd59;box-shadow:0 0 9px #94bd5980;animation:pulse 2.5s infinite}@keyframes pulse{50%{opacity:.4}}.top-right{font:600 12px var(--title);letter-spacing:2px;color:#b6a27e}
+.hero{position:relative;isolation:isolate;overflow:hidden;min-height:450px;display:flex;align-items:center;padding:68px 20px 64px;border-bottom:1px solid #5b432c;background:linear-gradient(180deg,#171512 0%,#251c15 75%,#171512)}.hero:before{content:"MANN CO.";position:absolute;z-index:-2;top:-60px;left:-35px;color:#fff;opacity:.035;font:700 clamp(140px,25vw,330px)/1 var(--title);letter-spacing:-10px;white-space:nowrap;transform:rotate(-8deg)}.hero:after{content:"";position:absolute;z-index:-1;inset:0;opacity:1;background-color:#171512;background-image:radial-gradient(ellipse at 76% 40%,#b8322533 0%,transparent 38%),repeating-linear-gradient(135deg,transparent 0 34px,#d8b76b0a 35px 37px),linear-gradient(115deg,transparent 0 58%,#b8322517 58% 60%,transparent 60%),linear-gradient(90deg,#171512 0%,#171512d9 36%,#17151280 68%,#171512f0 100%),linear-gradient(180deg,#33271b,#151310);background-size:auto,auto,auto,auto,auto}.hero:after{mask-image:linear-gradient(90deg,#000 0%,#000b 65%,#000 100%)}.hero-inner{width:min(1000px,92%);margin:auto;position:relative;animation:reveal .7s var(--ease) both}@keyframes reveal{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:none}}.stamp{display:inline-flex;align-items:center;gap:9px;padding:8px 13px;background:#2b2117;border:1px solid #68502c;color:var(--gold);font:600 11px var(--title);letter-spacing:2.5px;text-transform:uppercase}.stamp:before{content:'★';font-size:14px}.hero h1{margin-top:25px;font:700 clamp(52px,8vw,100px)/.91 var(--title);text-transform:uppercase;text-shadow:4px 4px #000,8px 8px #0005}.hero h1 span{display:block;color:var(--red2);margin-top:8px}.hero-copy{max-width:560px;margin-top:22px;color:#b6a995;font-size:16px;line-height:1.75}.hero-copy strong{color:#e3c77e}.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:25px}.tag{padding:7px 11px;background:#191714d9;border:1px solid #50483b;color:#c2b49a;font:600 10px var(--title);letter-spacing:1.2px}
+.merc-strip{display:grid;grid-template-columns:repeat(9,1fr);height:74px;overflow:hidden;background:#14120f;border-block:1px solid #51402c}.merc{position:relative;display:flex;justify-content:center;align-items:end;overflow:hidden;border-right:1px solid #302920;background:linear-gradient(180deg,#2b2118,#151310);color:#a99b82;font:700 10px var(--title);letter-spacing:1px}.merc:before{content:attr(data-class);position:absolute;top:7px;color:#c8ad70;opacity:.35;font:700 30px var(--title)}.merc:nth-child(odd){background:linear-gradient(180deg,#291a17,#151310)}.merc span{padding-bottom:7px;z-index:1;text-shadow:1px 2px #000}
+.stripe{display:flex;height:5px;box-shadow:0 3px 15px #0008}.stripe .r{flex:1;background:var(--red)}.stripe .g{width:85px;background:var(--gold)}.stripe .b{flex:1;background:var(--blu)}.main{padding:62px 0 85px}.section{display:flex;align-items:center;gap:15px;margin-bottom:28px}.section-icon{display:grid;place-items:center;width:48px;height:48px;background:var(--red);border:2px solid #7c241d;color:#fff;font:700 22px var(--title);box-shadow:3px 3px #000}.section-title h2{font:700 31px/.95 var(--title);text-transform:uppercase}.section-title p{margin-top:7px;color:var(--muted);font-size:10px;letter-spacing:1.8px;text-transform:uppercase}.count{margin-left:auto;color:#88734f;font:700 27px var(--title);white-space:nowrap}
+.searchrow{display:flex;gap:10px;margin-bottom:17px}.search{position:relative;flex:1;min-width:0}.search span{position:absolute;top:50%;left:16px;transform:translateY(-50%);color:var(--gold);font-size:22px;pointer-events:none}.search input{width:100%;height:53px;padding:0 17px 0 47px;background:#151412;border:1px solid #484136;color:var(--text);font-size:14px}.search input::placeholder{color:#716b60}.search input:focus{background:#1b1915;border-color:var(--gold);box-shadow:0 0 0 3px #e6b94d12}.key{display:flex;align-items:center;padding:0 14px;background:#211e19;border:1px solid #484136;color:#9c8c6d;font:12px monospace;white-space:nowrap}.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}.filter{padding:9px 14px;background:#191815;border:1px solid #3c382f;color:#968b79;font:600 11px var(--title);letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:.2s}.filter:hover{color:#e4d4b5;border-color:#75613e;transform:translateY(-1px)}.filter.active{background:#541b17;border-color:var(--red);color:#ffdbcb;box-shadow:inset 3px 0 var(--red2)}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}.card[hidden]{display:none!important}.card{--accent:var(--red);position:relative;min-width:0;overflow:hidden;padding:22px;background:linear-gradient(135deg,#292722,#1b1a18 75%);border:1px solid #464034;box-shadow:3px 4px #080808;transition:transform .22s var(--ease),border-color .22s,background .22s;animation:cardin .35s var(--ease) both}.card:nth-child(3n+2){animation-delay:.04s}.card:nth-child(3n+3){animation-delay:.08s}@keyframes cardin{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}.card:before{content:"";position:absolute;left:0;top:0;width:3px;height:100%;background:var(--accent);opacity:.65;transition:.2s}
+/* As fichas usam fundos ilustrados com arte do jogo. */
+.card{background-color:#1b1a18;background-image:repeating-linear-gradient(135deg,transparent 0 18px,#ffffff05 19px 20px),linear-gradient(135deg,#292722,#171614 78%);background-blend-mode:screen,normal;isolation:isolate}
+.card:after{content:attr(data-mark);position:absolute;right:12px;bottom:42px;font:700 84px/.8 var(--title);letter-spacing:-4px;color:var(--accent);opacity:.075;transform:rotate(-9deg);pointer-events:none;z-index:0}
+/* Artwork de Team Fortress 2 como textura de fundo. Cada ficha usa um recorte/posição diferente e uma sobreposição própria para manter a leitura. */
+.card[data-category="movement"]{--accent:#d5ad4d;background-image:radial-gradient(ellipse at 92% 10%,#d5ad4d26,transparent 45%),repeating-linear-gradient(135deg,transparent 0 22px,#d5ad4d09 23px 25px),linear-gradient(120deg,#2a2519,#171614 76%)}
+.card[data-category="combat"]{--accent:#b83225;background-image:radial-gradient(ellipse at 90% 8%,#b8322535,transparent 46%),repeating-linear-gradient(45deg,transparent 0 26px,#b8322509 27px 29px),linear-gradient(120deg,#2b1c1a,#171614 76%)}
+.card[data-category="maps"]{--accent:#3978a8;background-image:radial-gradient(ellipse at 90% 8%,#3978a833,transparent 46%),linear-gradient(135deg,transparent 0 68%,#3978a812 68% 70%,transparent 70%),linear-gradient(120deg,#20252a,#171614 76%)}
+.card[data-category="fun"]{--accent:#8c6eaa;background-image:radial-gradient(ellipse at 90% 8%,#8c6eaa30,transparent 46%),repeating-linear-gradient(-45deg,transparent 0 24px,#8c6eaa09 25px 27px),linear-gradient(120deg,#27212a,#171614 76%)}
+.card[data-category="cosmetics"]{--accent:#d6b65d;background-image:radial-gradient(ellipse at 90% 8%,#d6b65d2b,transparent 46%),repeating-linear-gradient(90deg,transparent 0 30px,#d6b65d08 31px 32px),linear-gradient(120deg,#29261f,#171614 76%)}
+/* Recortes individuais por comando: o mesmo key art fica enquadrado de forma diferente em cada ficha. */
+.card:nth-child(1){background-position:center,5% 28%}.card:nth-child(2){background-position:center,15% 42%}.card:nth-child(3){background-position:center,25% 35%}.card:nth-child(4){background-position:center,35% 52%}.card:nth-child(5){background-position:center,45% 32%}.card:nth-child(6){background-position:center,55% 44%}.card:nth-child(7){background-position:center,65% 28%}.card:nth-child(8){background-position:center,75% 50%}.card:nth-child(9){background-position:center,85% 35%}.card:nth-child(10){background-position:center,95% 55%}.card:nth-child(11){background-position:center,20% 70%}.card:nth-child(12){background-position:center,40% 75%}.card:nth-child(13){background-position:center,60% 65%}.card:nth-child(14){background-position:center,80% 72%}
+.cardtop,.desc,.bottom{position:relative;z-index:1}
+/* TF2 artwork layer: individual mercenary/action artwork per command */
+.card{background:#211d18;isolation:isolate;min-height:250px}
+.card .art-bg{position:absolute;inset:0;z-index:0;overflow:hidden;background:#211d18;pointer-events:none}
+.card .art-bg img{width:100%;height:100%;display:block;object-fit:cover;object-position:center 28%;opacity:.58;filter:saturate(1) contrast(1.12);transform:scale(1.015);transition:transform .55s var(--ease),opacity .3s,filter .3s}
+.card .art-bg:after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,#171512d9 0%,#171512a8 38%,#17151238 72%,#17151270 100%),linear-gradient(0deg,#171512a8 0%,transparent 62%),linear-gradient(135deg,var(--accent,#b83225)20,transparent 60%);}
+.card:hover .art-bg img{transform:scale(1.07);opacity:.72;filter:saturate(1.12) contrast(1.15)}
+.card[data-category="movement"] .art-bg:after{background:linear-gradient(90deg,#191710d9,#191710a8 42%,#19171028 75%,#19171070),linear-gradient(0deg,#191710a8 0%,transparent 65%),linear-gradient(135deg,#d5ad4d22,transparent 70%)}
+.card[data-category="combat"] .art-bg:after{background:linear-gradient(90deg,#1b1413d9,#1b1413a8 42%,#1b141328 75%,#1b141370),linear-gradient(0deg,#1b1413a8 0%,transparent 65%),linear-gradient(135deg,#b8322528,transparent 70%)}
+.card[data-category="maps"] .art-bg:after{background:linear-gradient(90deg,#15191dd9,#15191da8 42%,#15191d28 75%,#15191d70),linear-gradient(0deg,#15191da8 0%,transparent 65%),linear-gradient(135deg,#3978a828,transparent 70%)}
+.card[data-category="fun"] .art-bg:after{background:linear-gradient(90deg,#19151dd9,#19151da8 42%,#19151d28 75%,#19151d70),linear-gradient(0deg,#19151da8 0%,transparent 65%),linear-gradient(135deg,#8c6eaa28,transparent 70%)}
+.card[data-category="cosmetics"] .art-bg:after{background:linear-gradient(90deg,#1b1912d9,#1b1912a8 42%,#1b191228 75%,#1b191270),linear-gradient(0deg,#1b1912a8 0%,transparent 65%),linear-gradient(135deg,#d6b65d28,transparent 70%)}
+.card .cardtop,.card .desc,.card .bottom{z-index:2}
+@media(prefers-reduced-motion:reduce){.card .art-bg img{transition:none}}
+
+.card:after{content:"";position:absolute;right:0;top:0;width:50px;height:50px;background:linear-gradient(135deg,transparent 50%,#ffffff05 50%);pointer-events:none}.card:hover{transform:translateY(-3px);border-color:#78613d;background-color:#211d18;box-shadow:3px 8px #080808,0 0 22px #0002}.card:hover:before{width:4px;opacity:1}.cardtop{display:flex;align-items:center;gap:12px}.icon{display:grid;place-items:center;flex-shrink:0;width:43px;height:43px;background:#151412;border:1px solid #5a4d36;color:var(--gold);font:700 21px var(--title);box-shadow:2px 2px #000;transition:transform .2s}.card:hover .icon{transform:rotate(-4deg) scale(1.04)}.name{color:#f0c45b;font:700 27px/1.1 var(--title);text-shadow:2px 2px #000}.category{margin-top:4px;color:#938775;font-size:9px;font-weight:700;letter-spacing:1.3px;text-transform:uppercase}.index{margin-left:auto;align-self:start;color:#554a3b;font:700 13px var(--title)}.desc{min-height:48px;margin-top:17px;color:#bdb4a5;font-size:14px;line-height:1.7}.desc strong{color:#e6c875}.bottom{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin-top:16px;padding-top:12px;border-top:1px solid #39352d}.prompt{color:#766b5a;font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase}.code{padding:6px 10px;background:#11110f;border:1px solid #403a30;color:#a9c977;font:12px monospace;user-select:all}.copy{margin-left:auto;padding:7px 10px;background:#29251d;border:1px solid #55472e;color:#b8a47a;font:700 10px var(--title);letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:.2s}.copy:hover{background:#49381e;color:#f3d17b;border-color:var(--gold)}.copy.done{background:#28331d;border-color:#657d3c;color:#b7d783}.empty{display:none;grid-column:1/-1;padding:45px 20px;background:#1b1916;border:1px dashed #514536;text-align:center}.empty h3{color:var(--gold);font:700 23px var(--title);text-transform:uppercase}.empty p{margin-top:8px;color:var(--muted)}
+.intel{margin-top:45px;overflow:hidden;background:#211d17;border:1px solid #6a512e;box-shadow:4px 5px #080808}.intelhead{display:flex;align-items:center;gap:11px;padding:14px 19px;background:#40301d;border-bottom:1px solid #6a512e}.intelhead b{color:var(--gold);font-size:18px}.intelhead h3{color:#efd28a;font:700 16px var(--title);letter-spacing:1px;text-transform:uppercase}.intelhead small{margin-left:auto;color:#9d8151;font:10px monospace}.intelbody{padding:21px;color:#c6b89f;font-size:14px;line-height:1.9}.intelbody strong{color:#ead18d}.intel-tags{display:flex;flex-wrap:wrap;gap:8px;padding:0 21px 20px}.intel-tags span{padding:5px 9px;background:#171512;border:1px solid #48402f;color:#928064;font-size:9px;letter-spacing:1px;text-transform:uppercase}
+.footer{padding:43px 20px 25px;background:#0c0c0b;border-top:4px solid #3b3025;text-align:center}.footer-title{color:#eee5d5;font:700 40px/1 var(--title);text-transform:uppercase;text-shadow:3px 3px #000}.footer-title span{color:var(--red2)}.footer-sub{margin-top:12px;color:#8b7c64;font-size:10px;letter-spacing:2px;text-transform:uppercase}.divider{width:65px;height:3px;margin:21px auto;background:var(--gold)}.disclaimer{color:#514a3d;font-size:9px;line-height:1.9;letter-spacing:1px}.backtop{position:fixed;right:22px;bottom:22px;z-index:30;display:grid;place-items:center;width:42px;height:42px;background:#211d17;border:1px solid #68502c;color:var(--gold);font-size:20px;cursor:pointer;opacity:0;visibility:hidden;transform:translateY(10px);transition:.2s}.backtop.visible{opacity:1;visibility:visible;transform:none}.backtop:hover{background:#541b17;border-color:var(--red)}
+/* FIX VISIBILIDADE DAS ARTES: camada de imagem acima do fundo do card */
+.card{background-color:#211d18!important;}
+.card .art-bg{z-index:0!important;}
+.card .art-bg img{position:absolute;inset:0;z-index:0;object-fit:cover;object-position:center;width:100%;height:100%;display:block!important;opacity:.88!important;visibility:visible!important;}
+.card .art-bg:after{z-index:1!important;}
+.card .cardtop,.card .desc,.card .bottom{position:relative;z-index:3!important;}
+.card:before{z-index:4;pointer-events:none;}
+.card:hover{background-color:#211d18!important;}
+@media(max-width:760px){.grid{grid-template-columns:1fr}.hero{min-height:390px;padding:55px 18px}.hero h1{font-size:clamp(45px,12vw,78px)}.main{padding-top:38px}.count{font-size:22px}.desc{min-height:0}.topbar{padding:0 4%;font-size:8px}.merc-strip{height:55px}.merc:before{font-size:23px}}@media(max-width:480px){.top-right{font-size:9px}.stamp{font-size:9px;letter-spacing:1.4px}.tag{padding:6px 8px;font-size:8px}.section{gap:10px}.section-title h2{font-size:24px}.section-title p{font-size:8px;letter-spacing:1px}.section-icon{width:39px;height:39px}.count{font-size:17px}.searchrow{gap:6px}.key{padding:0 8px;font-size:9px}.filter{padding:8px 10px;font-size:10px}.card{padding:17px}.name{font-size:24px}.category{font-size:8px;letter-spacing:.8px}.code{font-size:11px;padding:6px 8px}.intelhead{gap:7px;padding:12px}.intelhead h3{font-size:13px}.intelhead small{font-size:7px}.intelbody{padding:16px}.backtop{right:14px;bottom:14px}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+
+/* === FIELD MANUAL: CSS-ONLY COMMAND CARD ART (NO EXTERNAL IMAGES) === */
+.card{position:relative;isolation:isolate;overflow:hidden;min-height:250px;
+ background-color:#1c1a17!important;
+ background-image:linear-gradient(115deg,#29251f 0%,#1d1b18 48%,#141312 100%)!important;}
+.card .art-bg{display:none!important}
+.card::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.95;
+ background:
+  radial-gradient(ellipse at 88% 10%,color-mix(in srgb,var(--accent) 24%,transparent),transparent 42%),
+  repeating-linear-gradient(135deg,transparent 0 24px,#ffffff06 25px 26px),
+  linear-gradient(125deg,transparent 0 57%,color-mix(in srgb,var(--accent) 8%,transparent) 57% 59%,transparent 59%),
+  linear-gradient(180deg,#ffffff03,transparent 42%,#00000020);}
+.card::after{content:attr(data-mark);position:absolute;right:10px;bottom:32px;z-index:0;pointer-events:none;
+ color:var(--accent);opacity:.095;font:900 clamp(65px,8vw,105px)/.8 var(--title);letter-spacing:-5px;
+ transform:rotate(-10deg);text-shadow:3px 3px #000;}
+.card .cardtop,.card .desc,.card .bottom{position:relative;z-index:2!important}
+.card .icon{position:relative;z-index:3;box-shadow:2px 2px #000, inset 0 0 12px color-mix(in srgb,var(--accent) 12%,transparent)}
+.card:hover::before{opacity:1;filter:brightness(1.15)}
+.card[data-category="movement"]::before{background:radial-gradient(ellipse at 88% 8%,#d5ad4d30,transparent 43%),repeating-linear-gradient(45deg,transparent 0 19px,#d5ad4d0b 20px 22px),linear-gradient(125deg,transparent 55%,#d5ad4d12 55% 58%,transparent 58%)}
+.card[data-category="combat"]::before{background:radial-gradient(ellipse at 88% 8%,#b8322538,transparent 43%),repeating-linear-gradient(-45deg,transparent 0 23px,#b832250b 24px 26px),linear-gradient(125deg,transparent 55%,#b8322515 55% 58%,transparent 58%)}
+.card[data-category="maps"]::before{background:radial-gradient(ellipse at 88% 8%,#3978a838,transparent 43%),linear-gradient(135deg,transparent 0 62%,#3978a812 62% 64%,transparent 64%),repeating-linear-gradient(90deg,transparent 0 34px,#3978a808 35px 36px)}
+.card[data-category="fun"]::before{background:radial-gradient(ellipse at 88% 8%,#8c6eaa35,transparent 43%),repeating-linear-gradient(135deg,transparent 0 21px,#8c6eaa0b 22px 24px),linear-gradient(125deg,transparent 55%,#8c6eaa12 55% 58%,transparent 58%)}
+.card[data-category="cosmetics"]::before{background:radial-gradient(ellipse at 88% 8%,#d6b65d30,transparent 43%),repeating-linear-gradient(90deg,transparent 0 27px,#d6b65d0a 28px 30px),linear-gradient(125deg,transparent 55%,#d6b65d12 55% 58%,transparent 58%)}
+
+
+/* === COLOR-CODED COMMAND GROUPS + RESTORED MANN CO. SIDE STRIPE === */
+.card{--accent:#b83225;--accent-rgb:184,50,37;position:relative;border-color:color-mix(in srgb,var(--accent) 42%,#39352d)!important;
+ background-color:#1c1917!important;
+ box-shadow:inset 4px 0 0 var(--accent),3px 4px #080808!important;
+}
+/* The left-side stripe is built into the decorative background layer. */
+.card::before{inset:0!important;z-index:0!important;opacity:1!important;
+ background:
+  linear-gradient(90deg,var(--accent) 0 5px,transparent 5px 100%),
+  radial-gradient(ellipse at 88% 10%,rgba(var(--accent-rgb),.25),transparent 48%),
+  repeating-linear-gradient(135deg,transparent 0 23px,#ffffff06 24px 25px),
+  linear-gradient(125deg,transparent 0 58%,rgba(var(--accent-rgb),.09) 58% 61%,transparent 61%),
+  linear-gradient(145deg,#29251f 0%,#1d1b18 52%,#141312 100%)!important;
+}
+.card::after{z-index:1!important;color:var(--accent)!important;opacity:.12!important}
+.card .cardtop,.card .desc,.card .bottom{position:relative;z-index:3!important}
+.card .icon{color:var(--accent)!important;border-color:color-mix(in srgb,var(--accent) 65%,#4a4034)!important}
+.card .name{color:color-mix(in srgb,var(--accent) 70%,#f0c45b)!important}
+.card .bottom{border-top-color:color-mix(in srgb,var(--accent) 24%,#39352d)!important}
+.card .code{border-color:color-mix(in srgb,var(--accent) 35%,#403a30)!important}
+.card:hover{border-color:var(--accent)!important;box-shadow:inset 5px 0 0 var(--accent),3px 8px #080808,0 0 22px rgba(var(--accent-rgb),.12)!important}
+/* Every command category gets its own coordinated accent + tinted background. */
+.card[data-category="camera"]{--accent:#58b9c9;--accent-rgb:88,185,201}
+.card[data-category="movement"]{--accent:#e0b84f;--accent-rgb:224,184,79}
+.card[data-category="combat"]{--accent:#e34c3d;--accent-rgb:227,76,61}
+.card[data-category="maps"]{--accent:#5796d0;--accent-rgb:87,150,208}
+.card[data-category="fun"]{--accent:#ad79d4;--accent-rgb:173,121,212}
+.card[data-category="cosmetics"]{--accent:#86b85c;--accent-rgb:134,184,92}
+/* TF2 Build-style display lettering across headings/buttons; TF2 Secondary-like body. */
+body{font-family:'TF2 Secondary','Roboto Condensed',Arial,sans-serif!important}
+h1,h2,h3,.stamp,.top-right,.section-title h2,.name,.index,.icon,.filter,.copy,.tag,.merc,.count,.footer-title,.category,.prompt{
+ font-family:'TF2 Build','Oswald',Impact,'Arial Narrow',sans-serif!important;
+ font-weight:700!important;letter-spacing:.035em}
+.hero h1,.footer-title,.section-title h2,.name,.filter,.copy,.stamp{text-transform:uppercase}
+/* Camera cards have their own cyan treatment, not the generic red. */
+.card[data-category="camera"]::before{background:linear-gradient(90deg,#58b9c9 0 5px,transparent 5px),radial-gradient(ellipse at 88% 10%,#58b9c940,transparent 48%),repeating-linear-gradient(135deg,transparent 0 23px,#58b9c90b 24px 25px),linear-gradient(145deg,#1d292b,#171a1b 58%,#141312)!important}
+
+
+/* === PATCH DEFINITIVO: cores visíveis por categoria + faixa lateral independente === */
+.card{background-color:#171614!important;border-left:5px solid var(--accent)!important;box-shadow:3px 4px #080808,inset 0 0 0 1px color-mix(in srgb,var(--accent) 38%,#39352d)!important;}
+.card::before{content:""!important;position:absolute!important;inset:0!important;left:5px!important;width:auto!important;height:auto!important;z-index:0!important;pointer-events:none!important;opacity:1!important;background:radial-gradient(ellipse at 82% 0%,color-mix(in srgb,var(--accent) 42%,transparent),transparent 60%),linear-gradient(115deg,color-mix(in srgb,var(--accent) 20%,#171614) 0%,color-mix(in srgb,var(--accent) 9%,#171614) 48%,#171614 100%),repeating-linear-gradient(135deg,transparent 0 21px,#ffffff08 22px 23px)!important;}
+.card::after{content:attr(data-mark)!important;position:absolute!important;right:10px!important;bottom:30px!important;z-index:1!important;color:var(--accent)!important;opacity:.13!important;pointer-events:none!important;font:900 clamp(65px,8vw,105px)/.8 var(--title)!important;}
+.card .cardtop,.card .desc,.card .bottom{position:relative!important;z-index:3!important;}
+.card[data-category="camera"]{--accent:#45c2d8;--accent-rgb:69,194,216}
+.card[data-category="movement"]{--accent:#f0bd38;--accent-rgb:240,189,56}
+.card[data-category="combat"]{--accent:#f04436;--accent-rgb:240,68,54}
+.card[data-category="maps"]{--accent:#4399ef;--accent-rgb:67,153,239}
+.card[data-category="fun"]{--accent:#c06bf0;--accent-rgb:192,107,240}
+.card[data-category="cosmetics"]{--accent:#91d34b;--accent-rgb:145,211,75}
+.card:hover{border-left-color:var(--accent)!important;box-shadow:5px 8px #080808,0 0 24px color-mix(in srgb,var(--accent) 24%,transparent)!important;}
+
+/* === FIX FINAL: TF2 font + single accent stripe per command card === */
+@font-face{
+  font-family:"TF2 Build Web";
+  src:url("https://static.wfonts.com/data/2014/06/21/tf2-build/tf2build.ttf") format("truetype");
+  font-style:normal;font-weight:100 900;font-display:swap;
+}
+:root{--title:"TF2 Build Web","TF2 Build",Impact,"Arial Narrow",sans-serif;--body:"TF2 Build Web","TF2 Build","Roboto Condensed",Arial,sans-serif}
+html,body,button,input,textarea,select{font-family:var(--body)!important}
+.hero h1,.section-title h2,.name,.stamp,.filter,.copy,.footer-title,.top-right,.merc,.index,.category,.tag,.section-icon{font-family:var(--title)!important}
+.card{
+  position:relative!important;isolation:isolate!important;overflow:hidden!important;
+  border:1px solid color-mix(in srgb,var(--accent) 35%,#464034)!important;
+  border-left:5px solid var(--accent)!important;
+  background-color:#191714!important;
+  background-image:linear-gradient(125deg,color-mix(in srgb,var(--accent) 17%,#28241e) 0%,#211e19 43%,#171513 100%),repeating-linear-gradient(135deg,transparent 0 22px,#ffffff04 23px 24px)!important;
+  box-shadow:3px 4px #080808,inset 0 1px #ffffff08!important;
+}
+/* Remove pseudo-element stripes; ::before is only a soft background wash. */
+.card::before,.card:before{
+  content:""!important;position:absolute!important;top:0!important;left:5px!important;right:0!important;bottom:0!important;
+  width:auto!important;height:auto!important;z-index:0!important;pointer-events:none!important;opacity:1!important;
+  background:radial-gradient(ellipse at 88% 5%,color-mix(in srgb,var(--accent) 25%,transparent),transparent 52%),linear-gradient(180deg,#ffffff04,transparent 45%,#00000020)!important;
+}
+.card::after,.card:after{content:attr(data-mark)!important;position:absolute!important;right:10px!important;bottom:28px!important;z-index:0!important;color:var(--accent)!important;opacity:.09!important;pointer-events:none!important;font:900 clamp(68px,8vw,105px)/.8 var(--title)!important}
+.card .cardtop,.card .desc,.card .bottom{position:relative!important;z-index:2!important}
+.card .icon{color:var(--accent)!important;border-color:color-mix(in srgb,var(--accent) 45%,#5a4d36)!important}
+.card .name{color:var(--accent)!important}
+.card:hover{border-color:var(--accent)!important;border-left-color:var(--accent)!important;box-shadow:4px 7px #080808,0 0 18px color-mix(in srgb,var(--accent) 17%,transparent)!important}
+/* Personal accent for every command; TP and FP no longer inherit the cyan camera accent. */
+.card[data-mark="TP"]{--accent:#d6a84b!important}
+.card[data-mark="!fp"]{--accent:#b9b4a8!important}
+.card[data-mark="!bhop"]{--accent:#72b84a!important}
+.card[data-mark="!pad"]{--accent:#49a9b8!important}
+.card[data-mark="!duel"]{--accent:#d94b3f!important}
+.card[data-mark="!abort"]{--accent:#e08a45!important}
+.card[data-mark="!rtv"]{--accent:#5b9bd1!important}
+.card[data-mark="!robot"]{--accent:#9c7bce!important}
+.card[data-mark="!zombie"]{--accent:#8eb34a!important}
+.card[data-mark="!fashion"]{--accent:#e0bd68!important}
+.card[data-mark="!rtd"]{--accent:#c46fc2!important}
+.card[data-mark="!taunt"]{--accent:#e58cba!important}
+.card[data-mark="!ks"]{--accent:#ef554b!important}
+.card[data-mark="!nextmap"]{--accent:#6ba6e3!important}
+
+
+/* NAVIGATION TABS + SOCIAL HUB */
+.site-tabs{width:min(1000px,92%);margin:26px auto 0;display:flex;gap:10px;border-bottom:1px solid #4d3b27;padding-bottom:10px}
+.site-tab{appearance:none;cursor:pointer;display:flex;align-items:center;gap:10px;padding:13px 20px;background:linear-gradient(180deg,#27221a,#171512);border:1px solid #51432d;color:#b7a582;font:700 13px var(--title);letter-spacing:1.3px;text-transform:uppercase;transition:all .2s}
+.site-tab .tab-symbol{font-size:18px;color:var(--gold)}.site-tab:hover{border-color:#a17a3c;color:#f2dfb3;transform:translateY(-1px)}.site-tab.active{background:linear-gradient(180deg,#5b251b,#321710);border-color:#b84b32;color:#fff0d6;box-shadow:inset 0 -3px #d45b39,0 3px 12px #0005}.site-tab.active .tab-symbol{color:#ffd36b}
+.social-panel{display:none;width:min(1000px,92%);margin:30px auto 70px;animation:reveal .35s ease both}.social-panel.active{display:block}.social-heading{display:flex;align-items:center;gap:16px;margin-bottom:24px}.social-heading .section-icon{flex-shrink:0}.social-heading h2{font:700 clamp(25px,4vw,38px)/1 var(--title);color:#e8d8b4;text-transform:uppercase}.social-heading p{margin-top:7px;color:#988b73;font-size:13px}
+.social-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.social-link{--social:#d6a84b;position:relative;isolation:isolate;overflow:hidden;min-height:116px;display:flex;align-items:center;gap:17px;padding:22px;background:linear-gradient(115deg,color-mix(in srgb,var(--social) 14%,#171512),#171512 70%);border:1px solid color-mix(in srgb,var(--social) 45%,#453a2b);color:#e8ddc4;text-decoration:none;box-shadow:3px 4px #050505,inset 0 1px #ffffff0b;transition:transform .22s,border-color .22s,filter .22s}
+.social-link:before{content:attr(data-mark);position:absolute;z-index:-1;right:13px;bottom:-20px;font:700 88px/1 var(--title);color:var(--social);opacity:.08;transform:rotate(-8deg);pointer-events:none}.social-link:after{content:"↗";position:absolute;right:18px;top:17px;color:var(--social);font-size:18px;opacity:.8}.social-link:hover{transform:translateY(-3px);border-color:var(--social);filter:brightness(1.12)}
+.social-icon{width:52px;height:52px;flex:0 0 52px;display:grid;place-items:center;background:color-mix(in srgb,var(--social) 15%,#171512);border:1px solid color-mix(in srgb,var(--social) 60%,#453a2b);color:var(--social);font:700 24px var(--title);box-shadow:inset 0 1px #ffffff12,2px 2px #0006}.social-text strong{display:block;font:700 19px var(--title);letter-spacing:.7px;text-transform:uppercase}.social-text small{display:block;margin-top:6px;color:#a99c83;font-size:12px;letter-spacing:.3px}.social-note{margin-top:18px;padding:14px 16px;border-left:3px solid #8b6a37;background:#1a1712;color:#9d927e;font-size:12px;line-height:1.7}.social-note strong{color:#d8bd7b}
+@media(max-width:560px){.site-tabs{width:92%;}.site-tab{flex:1;justify-content:center;padding:12px 9px;font-size:11px}.social-grid{grid-template-columns:1fr}.social-link{min-height:100px;padding:17px}.social-heading h2{font-size:26px}}
+
+
+/* 📜 Rules tab — matching the Mann Co. field interface */
+.site-tabs{flex-wrap:wrap;justify-content:center}
+.rules-panel{display:none;width:min(1000px,92%);margin:30px auto 70px;animation:reveal .35s ease both}
+.rules-panel.active{display:block}
+.rules-heading{margin-bottom:26px}
+.rules-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+.rule-card{display:flex;gap:15px;align-items:flex-start;padding:19px 20px;background:linear-gradient(115deg,#292219,#171512 70%);border:1px solid #55432b;border-left:4px solid #b98a43;box-shadow:3px 4px #050505,inset 0 1px #ffffff0a;position:relative;overflow:hidden}
+.rule-card:after{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(135deg,transparent 0 28px,#f0c66b05 29px 31px)}
+.rule-num{font-size:22px;flex:0 0 34px;position:relative;z-index:1}
+.rule-card h3{font:700 18px var(--title);color:#e6d3a7;letter-spacing:.6px;text-transform:uppercase;margin:0 0 8px;position:relative;z-index:1}
+.rule-card p{font-size:13px;line-height:1.7;color:#b8ad98;margin:0;position:relative;z-index:1}
+.penalties{margin-top:24px;padding:24px;background:linear-gradient(120deg,#302016,#1a1713 75%);border:1px solid #8b572d;border-left:5px solid #d45b39;box-shadow:4px 5px #0008}
+.penalties h3{font:700 23px var(--title);color:#f0bd74;margin:0 0 10px;text-transform:uppercase}
+.penalties p{color:#c2b49a;font-size:13px;line-height:1.7}
+.penalty-tags{display:flex;gap:9px;flex-wrap:wrap;margin:15px 0}
+.penalty-tags span{padding:9px 12px;background:#211a14;border:1px solid #5c4430;color:#e1c69a;font:700 12px var(--title);letter-spacing:.4px}
+.staff-note{padding-top:12px;border-top:1px solid #ffffff12}
+.rules-signoff{text-align:center;padding:22px;margin-top:18px;background:linear-gradient(90deg,transparent,#282016,transparent);color:#e9c56f;font:700 21px var(--title);letter-spacing:1px}
+@media(max-width:650px){.rules-grid{grid-template-columns:1fr}.rule-card{padding:16px}.site-tab{flex:1;min-width:110px}}
+
+/* ✨ DIVINE COMMAND DECK — premium navigation overhaul */
+:root{--nav-gold:#f3c96b;--nav-red:#d94e3d;--nav-panel:#11100e}
+.hero{position:relative;isolation:isolate;overflow:hidden}
+.hero:before{content:"";position:absolute;inset:-25% -10% auto;height:420px;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 50% 20%,#c58a3928,transparent 62%),radial-gradient(ellipse at 12% 0,#7f2c2420,transparent 45%),radial-gradient(ellipse at 90% 0,#244a6920,transparent 45%)}
+.site-tabs{position:relative;isolation:isolate;width:min(1100px,94%);margin:34px auto 0;padding:10px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;flex-wrap:nowrap;justify-content:stretch;border:1px solid #78603a;border-radius:4px;background:linear-gradient(145deg,#262019 0%,#12110f 52%,#201911 100%);box-shadow:0 14px 34px #0008,inset 0 1px #ffffff13,inset 0 -2px #0008}
+.site-tabs:before{content:"📡  CENTRAL COMMAND INTERFACE  //  SELECIONE UMA SEÇÃO";grid-column:1/-1;display:block;padding:4px 10px 9px;color:#9d8962;font:700 10px var(--title);letter-spacing:2px;text-align:left;border-bottom:1px solid #ffffff12}
+.site-tab{position:relative;isolation:isolate;overflow:hidden;min-height:62px;justify-content:center;gap:12px;padding:15px 18px;border:1px solid #51432d;border-radius:3px;background:linear-gradient(180deg,#24201a,#151310);color:#b8a98a;font:700 14px var(--title);letter-spacing:1.5px;text-transform:uppercase;box-shadow:inset 0 1px #ffffff10,0 3px #080706;transition:transform .2s ease,border-color .2s ease,background .2s ease,color .2s ease,box-shadow .2s ease}
+.site-tab:before{content:"";position:absolute;inset:0;z-index:-1;opacity:0;background:radial-gradient(ellipse at 50% 0,#dba94b35,transparent 70%);transition:opacity .2s}
+.site-tab:after{content:"";position:absolute;left:12px;right:12px;bottom:0;height:3px;background:linear-gradient(90deg,transparent,var(--nav-gold),transparent);transform:scaleX(0);transform-origin:center;transition:transform .24s ease}
+.site-tab .tab-symbol{display:grid;place-items:center;width:34px;height:34px;border:1px solid #695332;background:#17140f;border-radius:2px;font-size:19px;color:#d9b65f;text-shadow:0 2px #000;box-shadow:inset 0 1px #ffffff12,0 2px #0008;transition:transform .2s,color .2s,border-color .2s}
+.site-tab:hover{transform:translateY(-2px);border-color:#9d7a43;color:#f4e5c4;box-shadow:inset 0 1px #ffffff18,0 5px #080706,0 0 16px #d8a64412}
+.site-tab:hover:before{opacity:1}.site-tab:hover .tab-symbol{transform:rotate(-5deg) scale(1.07);color:#ffdc83;border-color:#ad8745}
+.site-tab.active{color:#fff4d8;border-color:#c18a40;background:linear-gradient(180deg,#49301c,#241711);box-shadow:inset 0 1px #ffffff22,inset 0 -3px #100b07,0 4px 0 #080706,0 0 22px #d49b3d20}
+.site-tab.active:before{opacity:1;background:radial-gradient(ellipse at 50% 0,#f3bf5b38,transparent 75%)}.site-tab.active:after{transform:scaleX(1)}
+.site-tab.active .tab-symbol{background:linear-gradient(145deg,#67451f,#2a1a0d);border-color:#d2a451;color:#ffe08b;box-shadow:inset 0 1px #ffffff24,0 2px #0008,0 0 12px #f2bb4a22}
+/* Individual section identities */
+#tab-commands{--nav-gold:#f0bd59}#tab-social{--nav-gold:#70c8d6}#tab-rules{--nav-gold:#d66b52}
+#tab-social.active{background:linear-gradient(180deg,#1e4144,#142629);border-color:#6fc3cf;box-shadow:inset 0 1px #ffffff22,inset 0 -3px #0b1718,0 4px #080706,0 0 22px #4db9c51c}
+#tab-rules.active{background:linear-gradient(180deg,#49251f,#251411);border-color:#d66b52;box-shadow:inset 0 1px #ffffff22,inset 0 -3px #100b07,0 4px #080706,0 0 22px #d66b521c}
+#tab-social.active .tab-symbol{color:#a7f1f7;border-color:#6fc3cf;background:linear-gradient(145deg,#25535a,#142629)}#tab-rules.active .tab-symbol{color:#ffb49a;border-color:#d66b52;background:linear-gradient(145deg,#67352a,#2a1713)}
+.site-tab:focus-visible{outline:2px solid #ffe18a;outline-offset:3px}
+@media(max-width:650px){.site-tabs{grid-template-columns:1fr;gap:7px;padding:8px;margin-top:22px}.site-tabs:before{text-align:center;font-size:9px;letter-spacing:1.2px}.site-tab{min-width:0;min-height:52px;flex:initial;justify-content:flex-start;padding:10px 14px;font-size:12px}.site-tab:after{left:0;right:auto;top:8px;bottom:8px;width:3px;height:auto;transform:scaleY(0)}.site-tab.active:after{transform:scaleY(1)}.site-tab .tab-symbol{width:30px;height:30px;font-size:17px}}
+@media(prefers-reduced-motion:reduce){.site-tab,.site-tab:before,.site-tab:after,.site-tab .tab-symbol{transition:none}}
+
+
+/* ✨ PREMIUM MOTION PASS — polished, layered, TF2-inspired interface */
+:root{--motion-fast:180ms;--motion-med:360ms;--motion-slow:650ms;--motion-ease:cubic-bezier(.16,1,.3,1)}
+html{scroll-behavior:smooth}
+.site-tabs{transform:translateY(0);animation:nav-arrive .75s var(--motion-ease) both;position:relative}
+.site-tabs:after{content:"";position:absolute;left:10px;right:10px;top:0;height:1px;background:linear-gradient(90deg,transparent,#f1d18b66,#fff4ce22,transparent);pointer-events:none}
+.site-tab{transform:translateZ(0);transition:transform var(--motion-med) var(--motion-ease),filter var(--motion-med),border-color var(--motion-med),box-shadow var(--motion-med),background var(--motion-med),color var(--motion-med)}
+.site-tab:active{transform:translateY(1px) scale(.985);filter:brightness(1.12)}
+.site-tab .tab-symbol{transition:transform var(--motion-med) var(--motion-ease),filter var(--motion-med),box-shadow var(--motion-med)}
+.site-tab.active .tab-symbol{animation:tab-seal .48s var(--motion-ease) both}
+.site-tab.active{overflow:hidden}.site-tab.active:before{animation:tab-glow .8s ease-out both}
+.panel-enter{animation:panel-reveal .62s var(--motion-ease) both;transform-origin:top center}
+#commands-panel.panel-enter .card{animation:card-arrive .55s var(--motion-ease) both;animation-delay:calc(var(--card-index,0)*38ms)}
+.card{--card-index:0;transform:translateZ(0);transition:transform .42s var(--motion-ease),border-color .32s,box-shadow .42s var(--motion-ease),filter .32s}
+.card:nth-child(1){--card-index:1}.card:nth-child(2){--card-index:2}.card:nth-child(3){--card-index:3}.card:nth-child(4){--card-index:4}.card:nth-child(5){--card-index:5}.card:nth-child(6){--card-index:6}.card:nth-child(7){--card-index:7}.card:nth-child(8){--card-index:8}.card:nth-child(9){--card-index:9}.card:nth-child(10){--card-index:10}.card:nth-child(11){--card-index:11}.card:nth-child(12){--card-index:12}.card:nth-child(13){--card-index:13}.card:nth-child(14){--card-index:14}
+.card:before{transition:width .3s var(--motion-ease),opacity .3s,filter .3s}.card:hover:before{width:6px;filter:brightness(1.35)}
+.card .icon{transition:transform .4s var(--motion-ease),background .3s,border-color .3s,box-shadow .3s}.card:hover .icon{transform:translateY(-2px) rotate(-4deg) scale(1.06);box-shadow:0 0 18px color-mix(in srgb,var(--accent) 22%,transparent),inset 0 1px #ffffff20}
+.copy{position:relative;overflow:hidden}.copy:after{content:"";position:absolute;inset:-50% auto -50% -35%;width:25%;transform:rotate(18deg);background:#ffffff24;transition:left .55s var(--motion-ease)}.copy:hover:after{left:130%}
+.social-link,.rule-card,.filter,.tag,.backtop{transition:transform .35s var(--motion-ease),box-shadow .35s,border-color .3s,background .3s,filter .3s}
+.social-link:hover{transform:translateY(-5px) scale(1.012);box-shadow:0 12px 28px #0008,0 0 24px color-mix(in srgb,var(--social) 18%,transparent)}
+.rule-card{transform:translateY(0)}.rule-card:hover{transform:translateY(-3px) translateX(2px);box-shadow:0 8px 20px #0006,inset 3px 0 var(--red2)}
+.hero h1{animation:title-arrive .8s var(--motion-ease) both}.hero-copy{animation:fade-up .7s .12s var(--motion-ease) both}.tags .tag{animation:fade-up .5s var(--motion-ease) both}.tags .tag:nth-child(2){animation-delay:.08s}.tags .tag:nth-child(3){animation-delay:.16s}
+.search input:focus{transform:translateY(-1px)}
+@keyframes nav-arrive{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes panel-reveal{0%{opacity:0;transform:translateY(18px) scale(.992);filter:blur(3px)}65%{filter:blur(0)}100%{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes card-arrive{from{opacity:0;transform:translateY(16px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes tab-seal{0%{transform:scale(.75) rotate(-12deg);filter:brightness(.7)}65%{transform:scale(1.12) rotate(3deg)}100%{transform:scale(1) rotate(0);filter:brightness(1)}}
+@keyframes tab-glow{0%{opacity:0}40%{opacity:1}100%{opacity:.65}}
+@keyframes title-arrive{from{opacity:0;transform:translateY(20px);letter-spacing:8px}to{opacity:1;transform:translateY(0);letter-spacing:normal}}
+@keyframes fade-up{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.panel-enter,.site-tabs,.hero h1,.hero-copy,.tags .tag,.site-tab.active .tab-symbol,#commands-panel.panel-enter .card{animation:none!important}.site-tab,.site-tab .tab-symbol,.card,.card .icon,.social-link,.rule-card,.filter,.tag,.backtop{transition:none!important}}
+
+</style>
+<style id="fresh-zero-menu">
+/* ZERO-BASE NAV REDESIGN — Zack Zanni Server */
+.site-tabs{width:min(1120px,94%);margin:clamp(22px,4vw,46px) auto 30px;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;border:0;background:transparent;box-shadow:none;position:relative;isolation:auto;animation:zzMenuRise .75s cubic-bezier(.2,.8,.2,1) both}
+.site-tabs:before{content:"📡 CENTRAL DE OPERAÇÕES  /  ESCOLHA SEU DESTINO";grid-column:1/-1;display:flex;align-items:center;gap:12px;padding:0 0 13px;border:0;border-bottom:1px solid #78613d;color:#b9a27a;font:700 11px var(--title);letter-spacing:2.4px;text-align:left}
+.site-tabs:after{content:"";position:absolute;left:0;right:0;top:39px;height:1px;background:linear-gradient(90deg,transparent,#d4a44e55,transparent);pointer-events:none}
+.site-tab{--tab-accent:#e4b454;position:relative;display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;gap:22px;min-height:146px;padding:18px 20px 17px;overflow:hidden;border:1px solid #4b4030;border-radius:5px;background:linear-gradient(145deg,#24211c 0%,#171512 58%,#11100e 100%);color:#d3c4a2;font:700 14px var(--title);letter-spacing:1.1px;text-transform:uppercase;box-shadow:0 7px 0 #080706,inset 0 1px #ffffff12;transform:translateY(0);transition:transform .32s cubic-bezier(.2,.8,.2,1),border-color .32s,background .32s,box-shadow .32s,color .32s}
+.site-tab:before{content:"";position:absolute;inset:0;z-index:0;opacity:.24;background:radial-gradient(ellipse at 100% 0,var(--tab-accent),transparent 64%),repeating-linear-gradient(135deg,transparent 0 22px,#ffffff04 23px 24px);transition:opacity .35s}
+.site-tab:after{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--tab-accent);box-shadow:0 0 14px color-mix(in srgb,var(--tab-accent),transparent 40%);transform:scaleY(.25);transform-origin:center;transition:transform .35s}
+.site-tab .tab-symbol{position:relative;z-index:1;display:grid;place-items:center;width:48px;height:48px;border:1px solid color-mix(in srgb,var(--tab-accent),#171512 45%);border-radius:4px;background:linear-gradient(145deg,#29231a,#13110e);font-size:24px;color:var(--tab-accent);box-shadow:inset 0 1px #ffffff15,0 3px 7px #0008;transition:transform .35s cubic-bezier(.2,.8,.2,1),background .3s,box-shadow .3s}
+.site-tab:hover{transform:translateY(-4px);border-color:var(--tab-accent);color:#fff0cc;box-shadow:0 10px 0 #080706,inset 0 1px #ffffff20,0 0 24px color-mix(in srgb,var(--tab-accent),transparent 86%)}
+.site-tab:hover:before{opacity:.58}.site-tab:hover:after{transform:scaleY(1)}.site-tab:hover .tab-symbol{transform:rotate(-4deg) scale(1.08);background:linear-gradient(145deg,color-mix(in srgb,var(--tab-accent),#29231a 60%),#13110e);box-shadow:inset 0 1px #ffffff25,0 4px 12px #0008,0 0 18px color-mix(in srgb,var(--tab-accent),transparent 75%)}
+.site-tab.active{border-color:var(--tab-accent);background:linear-gradient(145deg,color-mix(in srgb,var(--tab-accent),#24211c 83%),#171512 72%);color:#fff4d9;box-shadow:0 7px 0 #080706,inset 0 1px #ffffff20,0 0 26px color-mix(in srgb,var(--tab-accent),transparent 86%)}
+.site-tab.active:before{opacity:.7}.site-tab.active:after{transform:scaleY(1);width:5px}.site-tab.active .tab-symbol{border-color:var(--tab-accent);color:#fff0b5;animation:zzSeal .48s cubic-bezier(.2,.8,.2,1) both}
+#tab-commands{--tab-accent:#e8b44f}#tab-social{--tab-accent:#66c8d2}#tab-rules{--tab-accent:#d96b54}
+.site-tab:focus-visible{outline:2px solid #ffe49a;outline-offset:4px}
+@keyframes zzMenuRise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}@keyframes zzSeal{0%{transform:scale(.72) rotate(-12deg);opacity:.4}70%{transform:scale(1.12) rotate(3deg)}100%{transform:scale(1) rotate(0);opacity:1}}
+@media(max-width:680px){.site-tabs{grid-template-columns:1fr;gap:9px;margin-top:22px}.site-tabs:before{font-size:9px;letter-spacing:1.4px;padding-bottom:10px}.site-tabs:after{top:32px}.site-tab{min-height:76px;flex-direction:row;align-items:center;justify-content:flex-start;gap:14px;padding:12px 15px;font-size:12px}.site-tab .tab-symbol{width:40px;height:40px;font-size:21px}.site-tab:after{top:8px;bottom:8px;left:0;width:4px;height:auto;transform:scaleX(.25);transform-origin:left}.site-tab.active:after,.site-tab:hover:after{transform:scaleX(1)}}
+@media(prefers-reduced-motion:reduce){.site-tabs,.site-tab,.site-tab:before,.site-tab:after,.site-tab .tab-symbol{animation:none!important;transition:none!important}}
+</style>
+
+</head><body>
+<div class="topbar"><div class="top-left"><span class="status"></span><span>MANN CO. NETWORK // FIELD DATABASE</span></div><div class="top-right">EST. 1968</div></div>
+<header class="hero"><div class="hero-inner"><div class="stamp">Mercenary Information Terminal</div><h1>Zack Zanni<span>Servidor Oficial</span></h1><p class="hero-copy">🇧🇷 Bem-vindo ao servidor oficial! Entre no combate, consulte os comandos, conheça nossas regras e divirta-se no estilo <strong>Casual • 4Fun</strong>! 🎮</p><div class="tags"><span class="tag">🔥 Casual</span><span class="tag">🎉 4Fun</span><span class="tag">🇧🇷 Brasil</span></div></div></header>
+<div class="merc-strip" aria-label="Classes de Team Fortress 2"><div class="merc" data-class="S"><span>SCOUT</span></div><div class="merc" data-class="★"><span>SOLDIER</span></div><div class="merc" data-class="火"><span>PYRO</span></div><div class="merc" data-class="D"><span>DEMOMAN</span></div><div class="merc" data-class="H"><span>HEAVY</span></div><div class="merc" data-class="E"><span>ENGINEER</span></div><div class="merc" data-class="✚"><span>MEDIC</span></div><div class="merc" data-class="⌖"><span>SNIPER</span></div><div class="merc" data-class="♠"><span>SPY</span></div></div>
+<div class="stripe" aria-hidden="true"><div class="r"></div><div class="g"></div><div class="b"></div></div>
+<nav class="site-tabs" role="tablist" aria-label="Menu principal do servidor">
+<button class="site-tab active" id="tab-commands" role="tab" aria-selected="true" aria-controls="commands-panel"><span class="tab-symbol">⚔️</span> ⚔️ Comandos</button>
+<button class="site-tab" id="tab-social" role="tab" aria-selected="false" aria-controls="social-panel"><span class="tab-symbol">🌐</span> 🌐 Links Sociais</button>
+<button class="site-tab" id="tab-rules" role="tab" aria-selected="false" aria-controls="rules-panel"><span class="tab-symbol">📜</span> 📜 Regras</button>
+</nav>
+<main class="main container" id="commands-panel" role="tabpanel" aria-labelledby="tab-commands"><div class="section"><div class="section-icon">⌘</div><div class="section-title"><h2>Command Arsenal</h2><p>Manual de operações do mercenário</p></div><div class="count" id="count" aria-live="polite">14 / 14</div></div>
+<div class="searchrow"><div class="search"><span>⌕</span><input type="search" id="search" placeholder="Pesquisar comando, função ou categoria..." autocomplete="off" aria-label="Pesquisar comandos"></div><div class="key">CTRL + F</div></div>
+<div class="filters" role="group" aria-label="Filtrar comandos"><button class="filter active" data-filter="all" aria-pressed="true">Todos</button><button class="filter" data-filter="camera" aria-pressed="false">⌖ Câmera</button><button class="filter" data-filter="movement" aria-pressed="false">Movimentação</button><button class="filter" data-filter="combat" aria-pressed="false">Combate</button><button class="filter" data-filter="maps" aria-pressed="false">Mapas</button><button class="filter" data-filter="fun" aria-pressed="false">Diversão</button><button class="filter" data-filter="cosmetics" aria-pressed="false">Cosméticos</button></div>
+<div class="grid" id="grid">
+<article class="card" data-category="camera" data-search="tp terceira pessoa third person câmera camera visão perspectiva" data-mark="TP"><div class="cardtop"><div class="icon">◉</div><div><div class="name">!tp</div><div class="category">Câmera • Third Person</div></div><div class="index">01</div></div><p class="desc"> 👁️ Ative a visão em <strong>terceira pessoa</strong> e observe seu mercenário por outro ângulo.</p><div class="bottom"><span class="prompt">Comando</span><code class="code">!tp</code><button class="copy" data-copy="!tp">⧉ Copiar</button></div></article>
+<article class="card" data-category="camera" data-search="fp primeira pessoa câmera camera visão" data-mark="!fp"><div class="cardtop"><div class="icon">◎</div><div><div class="name">!fp</div><div class="category">Câmera • First Person</div></div><div class="index">02</div></div><p class="desc"> 🎯 Retorne à visão clássica em <strong>primeira pessoa</strong>, a perspectiva padrão para encarar o combate.</p><div class="bottom"><span class="prompt">Comando</span><code class="code">!fp</code><button class="copy" data-copy="!fp">⧉ Copiar</button></div></article>
+<article class="card" data-category="movement" data-search="bhop bunnyhop bunny hop saltos movimentação" data-mark="!bhop"><div class="cardtop"><div class="icon">↟</div><div><div class="name">!bhop</div><div class="category">Movement • Bunnyhop</div></div><div class="index">03</div></div><p class="desc"> 🐇 Ative o <strong>Bunnyhop</strong> e encadeie saltos para se movimentar de um jeito diferente. Digite novamente para desativar.</p><div class="bottom"><span class="prompt">Comando</span><code class="code">!bhop</code><button class="copy" data-copy="!bhop">⧉ Copiar</button></div></article>
+<article class="card" data-category="movement" data-search="pad engineer pads teleport teleporte velocidade jump boost" data-mark="!pad"><div class="cardtop"><div class="icon">➤</div><div><div class="name">!pad</div><div class="category">Engineer • Special Pads</div></div><div class="index">04</div></div><p class="desc"> 🛠️ Abra o menu de <strong>Engineer Pads</strong> e experimente teleportes, impulsos de velocidade e salto.</p><div class="bottom"><span class="prompt">Comando</span><code class="code">!pad</code><button class="copy" data-copy="!pad">⧉ Copiar</button></div></article>
+<article class="card" data-category="combat" data-search="duel duelo desafiar inimigo combate arena" data-mark="!duel"><div class="cardtop"><div class="icon">⚔</div><div><div class="name">!duel</div><div class="category">Combat • Challenge</div></div><div class="index">05</div></div><p class="desc"> ⚔️ Desafie um mercenário do <strong>time inimigo</strong> para um duelo e prove quem domina o campo.</p><div class="bottom"><span class="prompt">Exemplo</span><code class="code">!duel Nome</code><button class="copy" data-copy="!duel ">⧉ Copiar</button></div></article>
+<article class="card" data-category="combat" data-search="abort cancelar encerrar duelo desistir combate" data-mark="!abort"><div class="cardtop"><div class="icon">✕</div><div><div class="name">!abort</div><div class="category">Combat • Retreat</div></div><div class="index">06</div></div><p class="desc"> 🏳️ Cancele um <strong>duelo em andamento</strong>. Até os mercenários casca-grossa precisam de retirada.</p><div class="bottom"><span class="prompt">Comando</span><code class="code">!abort</code><button class="copy" data-copy="!abort">⧉ Copiar</button></div></article>
+<article class="card" data-category="maps" data-search="rtv rock the vote votação mapa trocar" data-mark="!rtv"><div class="cardtop"><div class="icon">⚑</div><div><div class="name">!rtv</div><div class="category">Map Control • Vote</div></div><div class="index">07</div></div><p class="desc"> 🗳️ Cansado do mapa? Inicie uma votação para escolher a próxima arena com <strong>Rock The Vote</strong>.</p><div class="bottom"><span class="prompt">Comando</span><code class="code">!rtv</code><button class="copy" data-copy="!rtv">⧉ Copiar</button></div></article>
+<article class="card" data-category="fun" data-search="robot robô robo mann vs machine mvm máquina transformação" data-mark="!robot"><div class="cardtop"><div class="icon">▣</div><div><div class="name">!robot</div><div class="category">Mann vs. Machine</div></div><div class="index">08</div></div><p class="desc"> 🤖 Transforme-se em um <strong>robô de MvM</strong> correspondente à classe equipada. Libere o poder das máquinas!</p><div class="bottom"><span class="prompt">Comando</span><code class="code">!robot</code><button class="copy" data-copy="!robot">⧉ Copiar</button></div></article>
+<article class="card" data-category="fun" data-search="zombie zumbi halloween morto transformação" data-mark="!zombie"><div class="cardtop"><div class="icon">☠</div><div><div class="name">!zombie</div><div class="category">Halloween • Undead</div></div><div class="index">09</div></div><p class="desc"> 🧟 Transforme-se em um <strong>zumbi</strong> baseado na classe equipada. Um pesadelo ambulante!</p><div class="bottom"><span class="prompt">Comando</span><code class="code">!zombie</code><button class="copy" data-copy="!zombie">⧉ Copiar</button></div></article>
+<article class="card" data-category="cosmetics" data-search="fashion cosméticos cosmetics loadout roupa aparência visual moda" data-mark="!fashion"><div class="cardtop"><div class="icon">✦</div><div><div class="name">!fashion</div><div class="category">Cosmetics • Loadout</div></div><div class="index">10</div></div><p class="desc"> 👔 Abra o arsenal da moda e escolha <strong>loadouts com cosméticos</strong>. Estilo também é arma, mercenário.</p><div class="bottom"><span class="prompt">Comando</span><code class="code">!fashion</code><button class="copy" data-copy="!fashion">⧉ Copiar</button></div></article>
+<article class="card" data-category="fun" data-search="rtd roll the dice dados aleatório efeito sorte azar caos" data-mark="!rtd"><div class="cardtop"><div class="icon">?</div><div><div class="name">!rtd</div><div class="category">Random • Roll The Dice</div></div><div class="index">11</div></div><p class="desc"> 🎲 Role os dados e receba um <strong>efeito aleatório</strong>. Sorte, azar ou caos? A Mann Co. não se responsabiliza.</p><div class="bottom"><span class="prompt">Comando</span><code class="code">!rtd</code><button class="copy" data-copy="!rtd">⧉ Copiar</button></div></article>
+<article class="card" data-category="fun" data-search="taunt provocação provocacao animação animacao dança" data-mark="!taunt"><div class="cardtop"><div class="icon">♫</div><div><div class="name">!taunt</div><div class="category">Taunts • Celebration</div></div><div class="index">12</div></div><p class="desc"> 🎭 Acesse o menu de <strong>provocações</strong> para celebrar vitórias, provocar rivais ou fazer graça.</p><div class="bottom"><span class="prompt">Comando</span><code class="code">!taunt</code><button class="copy" data-copy="!taunt">⧉ Copiar</button></div></article>
+<article class="card" data-category="combat" data-search="ks killstreak sequência sequencia eliminações contador arma" data-mark="!ks"><div class="cardtop"><div class="icon">★</div><div><div class="name">!ks</div><div class="category">Killstreak • Counter</div></div><div class="index">13</div></div><p class="desc"> 📏 Personalize o contador de <strong>Killstreak</strong> da sua arma. Defina um valor de 0 a 100.</p><div class="bottom"><span class="prompt">Exemplo</span><code class="code">!ks 45</code><button class="copy" data-copy="!ks 45">⧉ Copiar</button></div></article>
+<article class="card" data-category="maps" data-search="nextmap próximo proximo mapa votação vencedor" data-mark="!nextmap"><div class="cardtop"><div class="icon">➜</div><div><div class="name">!nextmap</div><div class="category">Map Control • Rotation</div></div><div class="index">14</div></div><p class="desc"> 🗺️ Descubra qual mapa venceu a votação e está programado para ser a <strong>próxima batalha</strong>.</p><div class="bottom"><span class="prompt">Comando</span><code class="code">!nextmap</code><button class="copy" data-copy="!nextmap">⧉ Copiar</button></div></article>
+<div class="empty" id="empty"><h3>Nenhum comando encontrado!</h3><p>Esse mercenário não está nos registros. Tente outra pesquisa.</p></div></div>
+<section class="intel"><div class="intelhead"><b>⚠</b><h3>Informações de Campo</h3><small>MANN CO. // NOTICE</small></div><div class="intelbody">Os comandos foram disponibilizados para tornar as partidas mais divertidas e caóticas. Algumas funções podem ter restrições durante o combate ou depender das configurações do servidor.<br><strong>Respeite seus companheiros mercenários, divirta-se e boa sorte!</strong></div><div class="intel-tags"><span>Casual Gameplay</span><span>Community Server</span><span>4Fun Experience</span><span>TF2 • Brasil</span></div></section></main>
+
+<section class="social-panel" id="social-panel" role="tabpanel" aria-labelledby="tab-social">
+<div class="social-heading"><div class="section-icon">✦</div><div><h2>Conecte-se</h2><p>Encontre Zack Zanni e participe da comunidade mercenária.</p></div></div>
+<div class="social-grid">
+<a class="social-link" style="--social:#ff4b3e" data-mark="YT" href="https://youtube.com/@zack_zanni_yt?si=-ZHTV0OAwFpczBBQ" target="_blank" rel="noopener noreferrer"><span class="social-icon">▶</span><span class="social-text"><strong>YouTube</strong><small>Vídeos, gameplay e novidades</small></span></a>
+<a class="social-link" style="--social:#e7e7e7" data-mark="X" href="https://x.com/Zack_zanni_YT" target="_blank" rel="noopener noreferrer"><span class="social-icon">𝕏</span><span class="social-text"><strong>X / Twitter</strong><small>Atualizações e publicações</small></span></a>
+<a class="social-link" style="--social:#d94b9b" data-mark="IG" href="https://www.instagram.com/zack_zanni_yt?obrf=MTBjNWptenMwNnFzZA==" target="_blank" rel="noopener noreferrer"><span class="social-icon">◎</span><span class="social-text"><strong>Instagram</strong><small>Bastidores e conteúdo</small></span></a>
+<a class="social-link" style="--social:#7289da" data-mark="DS" href="https://discord.gg/e6snJpH3Hs" target="_blank" rel="noopener noreferrer"><span class="social-icon">◉</span><span class="social-text"><strong>Discord</strong><small>Entre na comunidade</small></span></a>
+<a class="social-link" style="--social:#9dba52;grid-column:1/-1" data-mark="STEAM" href="https://steamcommunity.com/groups/Zackzannibrasilservidoroficial" target="_blank" rel="noopener noreferrer"><span class="social-icon">♙</span><span class="social-text"><strong>Grupo Steam do Servidor</strong><small>Comunidade oficial na Steam</small></span></a>
+</div><div class="social-note"><strong>Nota:</strong> os links usam <code>target="_blank"</code> para solicitar a abertura em uma nova aba/janela do navegador padrão do sistema. O site não consegue obrigar o Steam Overlay a usar o navegador externo se a própria Steam estiver configurada para abrir links internamente.</div>
+</section>
+
+
+<section class="rules-panel" id="rules-panel" role="tabpanel" aria-labelledby="tab-rules">
+ <div class="social-heading rules-heading"><div class="section-icon">📜</div><div><h2>📜 Regras Gerais do Servidor</h2><p>🤝 Respeite as regras, divirta-se e aproveite o jogo! 🎮</p></div></div>
+ <div class="rules-grid">
+  <article class="rule-card"><span class="rule-num">1️⃣</span><div><h3>🤝 Respeito</h3><p>Não persiga, assedie ou ofenda outros jogadores de forma excessiva.</p></div></article>
+  <article class="rule-card"><span class="rule-num">2️⃣</span><div><h3>🚫 Preconceito</h3><p>Racismo, homofobia e qualquer tipo de discriminação são proibidos.</p></div></article>
+  <article class="rule-card"><span class="rule-num">3️⃣</span><div><h3>🎤 Micspam</h3><p>Evite sons extremamente altos, repetitivos ou que atrapalhem a partida.</p></div></article>
+  <article class="rule-card"><span class="rule-num">4️⃣</span><div><h3>💬 Spam no Chat</h3><p>Não abuse de mensagens repetidas, comandos ou provocações no chat.</p></div></article>
+  <article class="rule-card"><span class="rule-num">5️⃣</span><div><h3>🛡️ Cheats e Exploits</h3><p>É proibido usar cheats, hacks ou exploits para obter vantagens injustas.</p></div></article>
+  <article class="rule-card"><span class="rule-num">6️⃣</span><div><h3>📢 Divulgação</h3><p>Não divulgue outros servidores ou faça propagandas sem autorização.</p></div></article>
+  <article class="rule-card"><span class="rule-num">7️⃣</span><div><h3>🐛 Abuso de Bugs</h3><p>Não abuse de bugs ou glitches para prejudicar a partida.</p></div></article>
+  <article class="rule-card"><span class="rule-num">8️⃣</span><div><h3>🧰 Comandos</h3><p>Não abuse dos comandos do servidor para atrapalhar outros jogadores.</p></div></article>
+  <article class="rule-card"><span class="rule-num">9️⃣</span><div><h3>💥 Team Killing e Griefing</h3><p>Não atrapalhe sua equipe intencionalmente nem prejudique a experiência dos demais.</p></div></article>
+  <article class="rule-card"><span class="rule-num">🔟</span><div><h3>🧠 Bom Senso</h3><p>Respeite os jogadores e a administração. Divirta-se sem estragar a diversão dos outros!</p></div></article>
+ </div>
+ <section class="penalties"><h3>⚠️ Punições</h3><p>Dependendo da gravidade da infração, a Staff poderá aplicar:</p><div class="penalty-tags"><span>⚠️ Advertência</span><span>🔇 Mute ou Gag</span><span>👢 Kick</span><span>⏳ Banimento temporário</span><span>⛔ Banimento permanente</span></div><p class="staff-note">🛡️ A Staff poderá aplicar punições imediatas em casos graves.</p></section>
+ <div class="rules-signoff">🔥 <strong>Bom jogo, mercenários!</strong> 🎮</div>
+</section>
+
+<footer class="footer"><div class="footer-title">Zack <span>Zanni</span></div><div class="footer-sub">🇧🇷 Official Community Server • 🎮 Casual • 🎉 4Fun • Brasil</div><div class="divider"></div><div class="disclaimer">TEAM FORTRESS 2 COMMUNITY SERVER<br>NOT AFFILIATED WITH VALVE CORPORATION</div></footer>
+<button class="backtop" id="backtop" aria-label="Voltar ao topo" title="Voltar ao topo">↑</button>
+<script>
+'use strict';
+const tabCommands=document.querySelector('#tab-commands'),tabSocial=document.querySelector('#tab-social'),tabRules=document.querySelector('#tab-rules'),commandsPanel=document.querySelector('#commands-panel'),socialPanel=document.querySelector('#social-panel'),rulesPanel=document.querySelector('#rules-panel');
+const tabButtons=[tabCommands,tabSocial,tabRules],tabPanels={commands:commandsPanel,social:socialPanel,rules:rulesPanel};
+function setTab(which){tabButtons.forEach(b=>{const active=b.id==='tab-'+which;b.classList.toggle('active',active);b.setAttribute('aria-selected',String(active));b.setAttribute('tabindex',active?'0':'-1');});Object.entries(tabPanels).forEach(([name,panel])=>{const active=which===name;if(name==='commands')panel.hidden=!active;else panel.classList.toggle('active',active);panel.setAttribute('aria-hidden',String(!active));if(active){panel.classList.remove('panel-enter');void panel.offsetWidth;panel.classList.add('panel-enter');}});const activeBtn=document.querySelector('#tab-'+which);if(activeBtn)activeBtn.focus({preventScroll:true});window.scrollTo({top:document.querySelector('.site-tabs').offsetTop-20,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});}
+tabCommands.addEventListener('click',()=>setTab('commands'));tabSocial.addEventListener('click',()=>setTab('social'));tabRules.addEventListener('click',()=>setTab('rules'));
+const search=document.querySelector('#search'),cards=[...document.querySelectorAll('.card')],filters=[...document.querySelectorAll('.filter')],count=document.querySelector('#count'),empty=document.querySelector('#empty'),back=document.querySelector('#backtop');let category='all';function norm(s){return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'')}function filter(){const q=norm(search.value.trim());let n=0;cards.forEach(c=>{const hay=norm(c.querySelector('.name').textContent+' '+c.querySelector('.desc').textContent+' '+(c.dataset.search||''));const show=hay.includes(q)&&(category==='all'||c.dataset.category===category);c.hidden=!show;if(show)n++});count.textContent=`${n} / ${cards.length} COMANDOS`;empty.style.display=n?'none':'block'}filters.forEach(b=>b.addEventListener('click',()=>{filters.forEach(x=>{x.classList.remove('active');x.setAttribute('aria-pressed','false')});b.classList.add('active');b.setAttribute('aria-pressed','true');category=b.dataset.filter;filter()}));search.addEventListener('input',filter);document.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='f'){e.preventDefault();search.focus();search.select()}if(e.key==='Escape'&&document.activeElement===search){search.value='';search.blur();filter()}});document.querySelectorAll('.copy').forEach(b=>b.addEventListener('click',async()=>{const card=b.closest('.card');const val=card?.querySelector('.bottom .code')?.textContent?.trim()||b.dataset.copy,orig='⧉ Copiar';try{await navigator.clipboard.writeText(val)}catch{const t=document.createElement('textarea');t.value=val;t.style.position='fixed';t.style.opacity='0';document.body.append(t);t.select();document.execCommand('copy');t.remove()}b.textContent='✓ COPIADO';b.classList.add('done');setTimeout(()=>{b.textContent=orig;b.classList.remove('done')},1500)}));window.addEventListener('scroll',()=>back.classList.toggle('visible',scrollY>400),{passive:true});back.addEventListener('click',()=>scrollTo({top:0,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'}));filter();
+</script></body></html>
+<style id="final-tp-fp-fix">
+/* Final override: remove the unwanted cyan/blue stripe on !tp and !fp */
+.card[data-mark="TP"], .card[data-mark="!fp"] {
+  --accent: #d6a84b !important;
+  border-left: 5px solid var(--accent) !important;
+  box-shadow: 3px 4px #080808, inset 0 1px #ffffff08 !important;
+}
+.card[data-mark="TP"]::before, .card[data-mark="!fp"]::before {
+  left: 0 !important;
+  background: radial-gradient(ellipse at 88% 5%, color-mix(in srgb, var(--accent) 18%, transparent), transparent 52%), linear-gradient(180deg,#ffffff03,transparent 45%,#00000020) !important;
+}
+.card[data-mark="TP"] .icon, .card[data-mark="!fp"] .icon {
+  color: var(--accent) !important;
+  border-color: color-mix(in srgb,var(--accent) 45%,#5a4d36) !important;
+}
+</style>
+<style id="zack-aaa-indie-overhaul">
+/* ZACK ZANNI FIELD MANUAL — visual polish pass (CSS only) */
+:root{--steel:#a9a18f;--paper:#e9dfc9;--panel-hi:#25231e;--gold-hi:#f2cb68}
+body{background-color:#0c0c0a;background-image:radial-gradient(ellipse at 50% 0%,#41301b55,transparent 52%),linear-gradient(180deg,#10100e,#0b0b09 70%);background-attachment:fixed}
+.topbar{height:42px;background:linear-gradient(90deg,#0a0908,#1b1711 48%,#0a0908);border-bottom-color:#6b512b;box-shadow:0 2px 12px #0008}
+.hero{min-height:490px;border-bottom:1px solid #80602e;background:linear-gradient(135deg,#171512 0%,#241a13 50%,#12110f 100%)}
+.hero:after{background-image:radial-gradient(ellipse at 80% 35%,#b8322533,transparent 42%),repeating-linear-gradient(135deg,transparent 0 29px,#f0cc6a0a 30px 32px),linear-gradient(90deg,#171512 0%,#171512bb 45%,#17151255 75%,#171512dd 100%),linear-gradient(180deg,#302318,#12110f);}
+.stamp{box-shadow:inset 0 1px #ffffff16,3px 3px #0008;text-shadow:0 1px #000}
+.hero h1{letter-spacing:-1.5px;text-shadow:0 2px #000,3px 4px #000,0 0 28px #b832251e}
+.hero-copy{font-size:clamp(15px,1.3vw,17px);text-shadow:0 1px #000}
+.tag{box-shadow:inset 0 1px #ffffff0b,0 2px #0005;transition:transform .2s,border-color .2s,color .2s}.tag:hover{transform:translateY(-2px);border-color:#a88648;color:#f0d89a}
+.merc-strip{height:82px;border-color:#6b512b;box-shadow:inset 0 1px #ffffff08,0 5px 15px #0005}.merc{filter:saturate(.85);transition:filter .2s,background .2s}.merc:hover{filter:saturate(1.25);background:linear-gradient(180deg,#3b2d1e,#171310)}
+.stripe{height:4px;box-shadow:0 3px 14px #0008}.main{padding-top:68px}.section-icon{box-shadow:3px 3px #000,inset 0 1px #ffffff20}.section-title h2{text-shadow:2px 2px #000;letter-spacing:.3px}
+.search input{background:linear-gradient(110deg,#1a1814,#12110f);border-color:#554a37;box-shadow:inset 0 2px 6px #0005;transition:border-color .2s,box-shadow .2s}.search input:focus{border-color:var(--gold-hi);box-shadow:0 0 0 3px #e6b94d1c,inset 0 2px 6px #0005}
+.filter{position:relative;overflow:hidden;background:linear-gradient(180deg,#211e19,#151412);box-shadow:inset 0 1px #ffffff0b,0 2px #0005}.filter:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,transparent 55%,#ffffff08 56%,transparent 59%);opacity:0;transition:opacity .2}.filter:hover:after{opacity:1}.filter.active{box-shadow:inset 4px 0 var(--red2),inset 0 1px #ffffff13,0 2px #0006}
+.grid{gap:17px}.card{border-color:#514735;box-shadow:3px 4px #050505,inset 0 1px #ffffff09;transition:transform .25s cubic-bezier(.2,.75,.25,1),border-color .25s,filter .25s,box-shadow .25s;background-blend-mode:normal,normal;}
+/* Color wash is intentionally stronger, while text remains above it. */
+.card[data-category="combat"]{background-image:radial-gradient(ellipse at 92% 0%,#c63b2b55,transparent 56%),linear-gradient(115deg,#3a201d 0%,#211715 45%,#151412 100%),repeating-linear-gradient(135deg,transparent 0 24px,#ef594208 25px 27px)}
+.card[data-category="movement"]{background-image:radial-gradient(ellipse at 92% 0%,#e2b64b55,transparent 56%),linear-gradient(115deg,#39301c 0%,#241f16 45%,#151412 100%),repeating-linear-gradient(135deg,transparent 0 24px,#e2b64b08 25px 27px)}
+.card[data-category="maps"]{background-image:radial-gradient(ellipse at 92% 0%,#4b9ad055,transparent 56%),linear-gradient(115deg,#202f3b 0%,#1b2228 45%,#151412 100%),repeating-linear-gradient(135deg,transparent 0 24px,#4b9ad008 25px 27px)}
+.card[data-category="fun"]{background-image:radial-gradient(ellipse at 92% 0%,#a17bc455,transparent 56%),linear-gradient(115deg,#30243a 0%,#211b27 45%,#151412 100%),repeating-linear-gradient(135deg,transparent 0 24px,#a17bc408 25px 27px)}
+.card[data-category="cosmetics"]{background-image:radial-gradient(ellipse at 92% 0%,#d6b65d55,transparent 56%),linear-gradient(115deg,#37301d 0%,#241f17 45%,#151412 100%),repeating-linear-gradient(135deg,transparent 0 24px,#d6b65d08 25px 27px)}
+.card:before{width:4px;opacity:1;box-shadow:0 0 14px color-mix(in srgb,var(--accent) 30%,transparent)}
+.card:after{right:14px;bottom:34px;font-size:clamp(66px,8vw,100px);opacity:.11;text-shadow:2px 2px #0004;transform:rotate(-8deg) translateY(0);transition:opacity .25s,transform .25s}
+.card:hover{transform:translateY(-4px);border-color:color-mix(in srgb,var(--accent) 75%,#77684a);box-shadow:4px 8px #0009,inset 0 1px #ffffff12;filter:saturate(1.08)}.card:hover:after{opacity:.18;transform:rotate(-5deg) translateY(-3px)}
+.cardtop,.desc,.bottom{position:relative;z-index:2}.cardtop{padding-bottom:15px;border-bottom:1px solid color-mix(in srgb,var(--accent) 20%,#484034)}
+.icon{box-shadow:inset 0 1px #ffffff18,2px 2px #0007;text-shadow:0 2px #000}.name{text-shadow:1px 2px #000;letter-spacing:.4px}.category{letter-spacing:1.5px}.index{font-variant-numeric:tabular-nums;color:color-mix(in srgb,var(--accent) 70%,#817866)}
+.desc{line-height:1.75;color:#c9c0b1}.desc strong{color:color-mix(in srgb,var(--accent) 70%,#f0dfbd)}.bottom{border-top:1px solid #ffffff0a;padding-top:14px}.code{box-shadow:inset 0 1px #ffffff0b,0 2px #0005;border-color:color-mix(in srgb,var(--accent) 25%,#4a4235);color:color-mix(in srgb,var(--accent) 70%,#f0d9ad)}
+.copy{border-color:#514633;background:linear-gradient(180deg,#30291d,#1c1812);box-shadow:inset 0 1px #ffffff10,0 2px #0005;transition:transform .2s,filter .2s,border-color .2s}.copy:hover{transform:translateY(-1px);filter:brightness(1.2);border-color:var(--accent)}.copy.done{background:#24301d;border-color:#70944a;color:#c6e5a4}
+.intel{border-color:#65502e;box-shadow:4px 5px #0008,inset 0 1px #ffffff08;background:linear-gradient(120deg,#292117,#171512 70%)}.intelhead{border-bottom-color:#5a472b}.intelhead b{box-shadow:2px 2px #0008}.intel-tags span{box-shadow:inset 0 1px #ffffff0b,0 2px #0005}
+.footer{background:linear-gradient(180deg,#11100e,#080807);border-top:1px solid #4b3925}.footer-title{text-shadow:2px 2px #000}.backtop{box-shadow:0 3px 14px #0009,inset 0 1px #ffffff20;transition:transform .2s,filter .2s}.backtop:hover{transform:translateY(-3px);filter:brightness(1.15)}
+@media(max-width:700px){.hero{min-height:410px;padding:54px 16px}.main{padding-top:45px}.grid{gap:12px}.card{padding:17px}.card:after{font-size:68px}.merc-strip{height:64px}.merc:before{font-size:24px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+</style>
+
+<style id="zack-tf2-art-direction">
+/* A arte enviada pelo usuário aparece SOMENTE no banner principal. */
+.hero{background:#15120f!important;isolation:isolate;position:relative}
+.hero:after{
+  background-color:#15120f!important;
+  background-image:
+    linear-gradient(90deg,#12100ef2 0%,#17120de0 18%,#17120d88 48%,#10100e70 100%),
+    linear-gradient(0deg,#100e0ce0,transparent 62%),
+    url("./1793686002920.jpg")!important;
+  background-size:cover,cover,cover!important;
+  background-position:center,center,center 42%!important;
+  background-repeat:no-repeat!important;
+  opacity:1!important;
+  mask-image:none!important;
+}
+@media(max-width:680px){.hero:after{background-position:center,center,58% center!important}}
+</style>
+
