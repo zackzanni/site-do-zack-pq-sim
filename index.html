@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#171512">
-<meta name="description" content="Manual de campo e arsenal de comandos do servidor Zack Zanni TF2."><title>Zack Zanni Servidor Oficial | Brasil | Casual • 4Fun</title>
+<meta name="description" content="Manual do servidor Zack Zanni TF2: comandos, mapas, eventos, regras e comunidade."><title>Zack Zanni Servidor Oficial | Brasil | Casual • 4Fun</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Roboto+Condensed:wght@400;500;600;700&family=Special+Elite&display=swap" rel="stylesheet">
 <style>
@@ -264,6 +264,45 @@ html{scroll-behavior:smooth}
 @keyframes title-arrive{from{opacity:0;transform:translateY(20px);letter-spacing:8px}to{opacity:1;transform:translateY(0);letter-spacing:normal}}
 @keyframes fade-up{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.panel-enter,.site-tabs,.hero h1,.hero-copy,.tags .tag,.site-tab.active .tab-symbol,#commands-panel.panel-enter .card{animation:none!important}.site-tab,.site-tab .tab-symbol,.card,.card .icon,.social-link,.rule-card,.filter,.tag,.backtop{transition:none!important}}
+
+
+/* === TF2 REAL ARTWORK (arquivos locais em assets/tf2/) === */
+.hero{
+  background-image:
+    linear-gradient(90deg,rgba(12,13,14,.96) 0%,rgba(12,13,14,.78) 42%,rgba(12,13,14,.28) 78%,rgba(12,13,14,.7) 100%),
+    linear-gradient(0deg,rgba(12,13,14,.68),transparent 55%),
+    url("1793686002920.jpg") !important;
+  background-size:cover !important;
+  background-position:center 42% !important;
+}
+.hero:after{
+  background:
+    linear-gradient(90deg,rgba(12,13,14,.62),transparent 70%),
+    linear-gradient(135deg,rgba(184,50,37,.12),transparent 48%,rgba(57,120,168,.12)) !important;
+}
+.merc-strip{height:104px!important;grid-template-columns:repeat(9,minmax(0,1fr))!important}
+.merc{
+  align-items:flex-end!important;
+  background-size:cover!important;
+  background-position:center 20%!important;
+  background-repeat:no-repeat!important;
+}
+.merc:before{display:none!important}
+.merc img{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:contain;
+  object-position:center bottom;padding:5px 5px 19px;
+  filter:drop-shadow(0 3px 4px #000b);opacity:.9;
+  transition:transform .25s ease,opacity .25s ease;
+}
+.merc:hover img{transform:translateY(-4px) scale(1.06);opacity:1}
+.merc span{
+  position:relative;z-index:2;width:100%;padding:5px 2px!important;
+  text-align:center;background:linear-gradient(0deg,#090a0be8,#090a0b99);
+  color:#f2e8d5!important;font-size:10px!important;letter-spacing:1px;
+}
+.tf2-logo img{display:block;width:100%;height:100%;object-fit:contain}
+@media(max-width:760px){.merc-strip{height:76px!important}.merc img{padding:2px 2px 17px}.merc span{font-size:8px!important}}
+@media(max-width:480px){.merc-strip{height:66px!important}.merc span{font-size:7px!important;letter-spacing:.4px}}
 
 </style>
 <style id="fresh-zero-menu">
@@ -903,17 +942,188 @@ body{padding-left:var(--zz-sidebar-width)!important}
 @media(prefers-reduced-motion:reduce){.site-tab,.site-tab:after{transition:none!important}}
 </style>
 
-</head><body>
-<div class="topbar"><div class="top-left"><span class="status"></span><span>MANN CO. NETWORK // FIELD DATABASE</span></div>\n<nav class="site-tabs" role="tablist" aria-label="Menu principal do servidor">\n<a class="nav-brand" href="#" aria-label="Zack Zanni - início">
-  <span class="nav-brand-mark">ZZ</span>
-  <span class="nav-brand-copy"><strong>ZACK ZANNI</strong><small>MERCENARY NETWORK</small></span>
-</a>
-<button class="site-tab active" id="tab-commands" role="tab" aria-selected="true" aria-controls="commands-panel"><span class="tab-symbol">⚔️</span><span class="tab-label">Comandos</span></button>
-<button class="site-tab" id="tab-social" role="tab" aria-selected="false" aria-controls="social-panel"><span class="tab-symbol">🌐</span><span class="tab-label">Comunidade</span></button>
-<button class="site-tab" id="tab-rules" role="tab" aria-selected="false" aria-controls="rules-panel"><span class="tab-symbol">📜</span><span class="tab-label">Regras</span></button>
-<button class="site-tab" id="tab-calendar" role="tab" aria-selected="false" aria-controls="calendar-panel"><span class="tab-symbol">📅</span><span class="tab-label">Agenda</span></button>
-<button class="site-tab" id="tab-server" role="tab" aria-selected="false" aria-controls="server-panel"><span class="tab-symbol">🖥️</span><span class="tab-label">Servidor</span></button>
-</nav>\n<div class="top-right">EST. 1968</div></div>
+
+<style id="zack-final-polish">
+:root{--bg:#0c0d0f;--panel:#151719;--panel-2:#1c1e20;--line:#393b3d;--text:#f2eee5;--soft:#c5bdae;--muted:#9b9385;--gold:#e7bd68;--red:#d65343;--blue:#6ba6d2;--surface-shadow:0 16px 38px #0007}
+html{scroll-padding-top:24px;background:var(--bg)}
+body{background:radial-gradient(ellipse at 50% -14%,#69421e35 0,transparent 48%),radial-gradient(ellipse at 100% 40%,#243d4c18 0,transparent 38%),#0c0d0f;color:var(--text);line-height:1.55}
+body:before{opacity:.022}::selection{background:#b94a37;color:white}
+.container{width:min(1180px,92%)}
+.topbar{min-height:38px;height:auto;padding:9px max(4%,calc((100% - 1180px)/2));background:#090a0b;border-bottom:1px solid #ffffff12}
+.status{background:#9bc66a;box-shadow:0 0 12px #9bc66a99}
+.hero{min-height:430px;padding:clamp(55px,8vw,92px) 20px;border-bottom:1px solid #8d6635;background:radial-gradient(ellipse at 78% 35%,#b8322530,transparent 34%),radial-gradient(ellipse at 15% 100%,#c28d3b16,transparent 40%),linear-gradient(120deg,#171614,#211b15 58%,#111416)}
+.hero:after{background:linear-gradient(90deg,#11100ef5 0%,#11100edb 45%,#11100e70 78%,#11100edb 100%),repeating-linear-gradient(135deg,transparent 0 38px,#ffffff07 39px 40px)}
+.hero-inner{width:min(1050px,92%)}.stamp{border-radius:3px;background:#251d14;border-color:#826337;box-shadow:0 4px 16px #0005}
+.hero h1{letter-spacing:.015em;text-wrap:balance}.hero-copy{color:#c5bba9;max-width:610px}.tags{gap:9px}.tag{border-radius:2px;background:#111214bb;border-color:#ffffff20}
+.merc-strip{background:#101214;border-color:#ffffff17}.merc{background:linear-gradient(180deg,#25221d,#111214);color:#c6b99f}.stripe{height:4px}
+.site-tabs{width:min(1120px,92%);gap:12px;margin:30px auto 34px}
+.site-tab{min-height:112px;border-radius:5px;padding:17px 18px;box-shadow:0 5px 0 #050505,inset 0 1px #ffffff12}.site-tab .tab-symbol{border-radius:5px}
+.main{padding:30px 0 76px}.section{margin-bottom:22px}.section-icon{border-radius:4px;box-shadow:3px 3px #050505}
+.section-title h2{letter-spacing:.025em}.section-title p{color:#a69a85;line-height:1.4}.count{color:#c2a36b}
+.searchrow{gap:10px}.search input{height:56px;border-radius:4px;background:#111315;border-color:#4a4740;color:#f5eee1;transition:border-color .2s,box-shadow .2s,background .2s}
+.search input:focus{border-color:#d4a84f;box-shadow:0 0 0 3px #d4a84f20}.key{border-radius:3px}
+.filters{gap:8px}.filter{border-radius:3px;min-height:38px}.filter.active{background:linear-gradient(135deg,#69271e,#3c1915);border-color:#d65343}
+.command-tools{margin:0 0 18px;align-items:center}.favorites-toggle{border-radius:3px;min-height:38px}.tools-hint{font-size:11px}
+.grid{gap:17px}.card{min-height:245px;padding:22px 22px 18px;border-radius:5px;background-color:#171819!important;box-shadow:0 7px 0 #070808,0 12px 24px #0003!important}
+.card:hover{transform:translateY(-4px);box-shadow:0 10px 0 #070808,0 18px 30px #0006,0 0 22px color-mix(in srgb,var(--accent) 14%,transparent)!important}
+.card .name{font-size:clamp(23px,2.1vw,28px);line-height:1.1}.card .category{font-size:10px;letter-spacing:1px;color:#b0a48f}
+.card .desc{font-size:14px;line-height:1.75;color:#d0c8ba;max-width:62ch}.card .desc strong{color:#ffe0a0}
+.card .icon{border-radius:4px;background:#111315}.card .bottom{gap:9px;border-top-color:#ffffff18}.prompt{font-size:10px}
+.code{border-radius:3px;background:#0d0f10;color:#c7e49b}.copy{border-radius:3px;min-height:33px}.favorite-command{border-radius:3px}
+.empty{border-radius:4px;background:#171819;border-color:#74603d}
+.field-guide,.intel,.mini-faq,.penalties,.event-overview,.calendar-shell,.server-connect-card{border-radius:5px;box-shadow:var(--surface-shadow)}
+.field-guide{background:linear-gradient(120deg,#292116,#171512)}.intel{border-color:#68502e}.intelbody{color:#d0c4ad}
+.mini-faq{background:#141516;border-color:#454039}.mini-faq details{border-top-color:#ffffff18}.mini-faq summary{padding:3px 0}.mini-faq details p{max-width:85ch}
+.social-panel,.rules-panel,.calendar-panel,.server-panel{width:min(1120px,92%)}
+.social-link,.rule-card{border-radius:4px}.social-link{min-height:124px}.rule-card{background:linear-gradient(115deg,#292219,#171512 70%)}.rules-grid{gap:15px}.penalties{border-radius:4px}
+.calendar-shell{background:linear-gradient(145deg,#211c15,#14120f)}.calendar-day{border-radius:3px}.calendar-day.today{box-shadow:inset 0 0 0 1px #d6a84b,0 0 12px #d6a84b1a}
+.server-connect-card{border-radius:4px}.map-gallery-card,.map-tool-card{border-radius:5px;transition:transform .2s,border-color .2s,box-shadow .2s}
+.map-gallery-card:hover,.map-tool-card:hover{box-shadow:0 9px 22px #0006}.map-shot img{transition:transform .35s ease}.map-gallery-card:hover .map-shot img{transform:scale(1.035)}
+.footer{background:#090a0b;border-top-color:#55422c}.footer-title{letter-spacing:.02em}.footer-sub{color:#a49579}.disclaimer{color:#777064}
+.backtop{border-radius:4px;box-shadow:0 5px 18px #0008}.site-toast{border-radius:4px;box-shadow:0 8px 24px #0008}
+button,a,input,summary{-webkit-tap-highlight-color:transparent}
+button:focus-visible,a:focus-visible,input:focus-visible,summary:focus-visible{outline:2px solid #f0cb7c!important;outline-offset:3px!important}
+[hidden]{display:none!important}
+.card[data-mark="!friendly"]{--accent:#78c8a0!important;--accent-rgb:120,200,160}
+@media(max-width:760px){.hero{min-height:360px;padding:48px 15px}.hero h1{font-size:clamp(43px,12vw,74px)}.hero-copy{font-size:14px;line-height:1.65}.site-tabs{margin:20px auto 26px;gap:8px}.site-tab{min-height:78px;padding:11px 8px;align-items:center;text-align:center}.site-tab .tab-symbol{width:35px;height:35px}.main{padding:10px 0 35px}.grid{gap:13px}.card{min-height:0;padding:18px}.card .desc{font-size:13px}.social-panel,.rules-panel,.calendar-panel,.server-panel{margin-top:20px;margin-bottom:38px}.section{align-items:center}.search input{height:50px}.field-guide{margin-top:10px}.footer{padding:32px 16px 22px}}
+@media(max-width:480px){.topbar{gap:8px}.top-left{letter-spacing:.7px}.top-right{letter-spacing:1px}.merc-strip{height:48px}.merc span{font-size:8px}.section-title h2{font-size:22px}.count{font-size:15px}.searchrow{flex-direction:column}.key{min-height:29px;justify-content:center}.filters{gap:6px}.filter{flex:1 1 auto}.card .cardtop{gap:9px}.card .name{font-size:23px}.card .bottom{align-items:center}.card .copy{margin-left:auto}.favorite-command{right:37px}.calendar-day{min-height:66px}.calendar-event{font-size:7px}.calendar-event em{font-size:7px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+</style>
+
+
+<style id="zack-professional-final">
+:root{
+  --red:#c33b2d;--red-hot:#ef6049;--blu:#397eaf;--gold:#e6bd70;
+  --bg:#11100e;--panel:#1b1915;--line:#514431;--paper:#eee5d4;
+  --title:"TF2 Build Web","TF2 Build","Oswald",Impact,sans-serif;
+  --body:"TF2 Secondary","Roboto Condensed",Arial,sans-serif;
+}
+html{scroll-behavior:smooth;scroll-padding-top:20px}
+body{background:radial-gradient(ellipse at 50% -12%,#4a321f 0,transparent 50%),linear-gradient(180deg,#11100e,#151310 60%,#0d0d0c);color:var(--paper)}
+.topbar{
+  min-height:88px;height:auto;padding:13px clamp(18px,4vw,68px);
+  display:flex;align-items:center;justify-content:space-between;gap:18px;
+  background:linear-gradient(105deg,#090909,#1b1711 52%,#0b0b0a);
+  border-bottom:1px solid #695333;box-shadow:0 7px 24px #0008;
+}
+.server-brand{display:flex;align-items:center;gap:15px;color:inherit;text-decoration:none;min-width:0}
+.tf2-logo{display:block;width:58px;height:58px;flex:0 0 58px;filter:drop-shadow(0 4px 7px #000b)}
+.tf2-logo svg{width:100%;height:100%;display:block}
+.server-brand-copy{display:flex;flex-direction:column;gap:5px}
+.server-brand-copy strong{font:900 clamp(21px,2.4vw,29px)/1 var(--title);letter-spacing:1.7px;color:#f5e6c8;text-shadow:2px 2px #000}
+.server-brand-copy small{font:700 9px var(--title);letter-spacing:1.7px;color:#b69a66}
+.top-status{display:flex;align-items:center;gap:9px;color:#a99a7e;font:700 10px var(--title);letter-spacing:1.4px}
+.top-right{color:#d4b36e;font:700 13px var(--title);letter-spacing:1.8px}
+.site-tabs{
+  width:min(1500px,calc(100% - 48px));max-width:none;margin:18px auto 30px;padding:9px;
+  display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;
+  border:1px solid #655033;border-radius:4px;
+  background:linear-gradient(125deg,#282219,#14120f 58%,#211a12);
+  box-shadow:0 9px 28px #0008,inset 0 1px #ffffff15;
+}
+.site-tabs:before{content:"MANN CO.  /  CENTRAL DE OPERAÇÕES";grid-column:1/-1;padding:3px 8px 10px;border-bottom:1px solid #55442d;color:#b59b6a;font:700 10px var(--title);letter-spacing:2px}
+.site-tabs:after{display:none}
+.site-tab{
+  --tab-accent:var(--gold);position:relative;isolation:isolate;overflow:hidden;
+  display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;gap:15px;
+  min-height:104px;padding:13px 15px;border:1px solid #51432f;border-radius:3px;
+  background:linear-gradient(145deg,#28231b,#151310 76%);color:#c8b995;
+  font:700 12px var(--title);letter-spacing:1px;text-transform:uppercase;
+  box-shadow:0 4px 0 #080706,inset 0 1px #ffffff0d;
+  transition:transform .25s cubic-bezier(.2,.8,.2,1),border-color .25s,box-shadow .25s,color .25s,filter .25s;
+}
+.site-tab:before{content:"";position:absolute;inset:0;z-index:-1;opacity:.2;background:radial-gradient(ellipse at 100% 0,var(--tab-accent),transparent 65%),repeating-linear-gradient(135deg,transparent 0 22px,#fff 23px 24px);transition:opacity .25s}
+.site-tab:after{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--tab-accent);transform:scaleY(.15);transition:transform .25s}
+.site-tab .tab-symbol{display:grid;place-items:center;width:37px;height:37px;border:1px solid color-mix(in srgb,var(--tab-accent),#171512 40%);border-radius:3px;background:#171410;color:var(--tab-accent);font-size:20px;box-shadow:0 3px 7px #0008;transition:transform .25s}
+.site-tab:hover{transform:translateY(-3px);border-color:var(--tab-accent);color:#fff1d0;box-shadow:0 7px 0 #080706,0 0 20px color-mix(in srgb,var(--tab-accent),transparent 84%)}
+.site-tab:hover:before,.site-tab.active:before{opacity:.48}
+.site-tab:hover:after,.site-tab.active:after{transform:scaleY(1)}
+.site-tab:hover .tab-symbol{transform:rotate(-5deg) scale(1.06)}
+.site-tab.active{border-color:var(--tab-accent);color:#fff2d1;background:linear-gradient(145deg,color-mix(in srgb,var(--tab-accent),#28231b 85%),#151310 78%);box-shadow:0 5px 0 #080706,inset 0 1px #ffffff18,0 0 18px color-mix(in srgb,var(--tab-accent),transparent 88%)}
+#tab-commands{--tab-accent:#e7b955}#tab-rules{--tab-accent:#dc7059}#tab-calendar{--tab-accent:#d9a64e}#tab-server{--tab-accent:#6ba5d7}#tab-social{--tab-accent:#6cc4cc}#tab-home{--tab-accent:#d5c29b}
+.hero{width:100%;min-height:410px;padding:68px 5%;background:linear-gradient(90deg,#171512f5,#171512a8),radial-gradient(ellipse at 78% 35%,#9d392c44,transparent 45%),repeating-linear-gradient(135deg,transparent 0 34px,#e6bd7009 35px 37px),linear-gradient(120deg,#302319,#141210);border-bottom:1px solid #6b4e2d}
+.hero-inner{width:min(1320px,100%);margin:auto}
+.hero h1{font-size:clamp(52px,8vw,104px);letter-spacing:1px}
+.hero-copy{max-width:680px;font-size:16px}
+.merc-strip{height:66px}
+.main.container{width:calc(100% - clamp(32px,7vw,120px));max-width:1600px;margin-inline:auto;padding:52px 0 80px}
+.social-panel,.rules-panel,.calendar-panel,.server-panel{width:calc(100% - clamp(32px,7vw,120px));max-width:1600px;margin:34px auto 75px}
+.grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,390px),1fr));gap:18px}
+.card{min-height:245px;padding:23px;border-radius:4px;box-shadow:0 5px 0 #080706,0 10px 22px #0005,inset 0 1px #ffffff0c;transition:transform .28s cubic-bezier(.2,.8,.2,1),border-color .25s,box-shadow .28s}
+.card:hover{transform:translateY(-5px);box-shadow:0 9px 0 #080706,0 17px 30px #0007,0 0 24px color-mix(in srgb,var(--accent),transparent 86%)}
+.card .name{font-size:29px;letter-spacing:.5px}
+.card .desc{font-size:14px;line-height:1.75}
+.card .icon{width:47px;height:47px;border-radius:3px}
+.copy,.filter,.favorites-toggle,.map-tools-actions button,.calendar-controls button{border-radius:3px;transition:transform .2s,filter .2s,background .2s,border-color .2s}
+.copy:hover,.filter:hover,.favorites-toggle:hover,.map-tools-actions button:hover{transform:translateY(-2px);filter:brightness(1.15)}
+.search input,.map-tools-search,.map-search-wrap{border-radius:3px}
+.field-guide,.intel,.calendar-shell,.server-connect-card,.penalties{border-radius:4px}
+.section-title h2{font-size:clamp(25px,3vw,34px);letter-spacing:.7px}
+.section-icon{border-radius:3px;box-shadow:0 4px 0 #080706}
+.social-grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:16px}
+.rules-grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,430px),1fr));gap:16px}
+.map-list{grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr))}
+.footer{border-top:3px solid #6d4c2c}
+@media(max-width:900px){
+ .site-tabs{grid-template-columns:repeat(3,minmax(0,1fr))}
+ .top-status{display:none}
+ .hero{min-height:360px}
+}
+@media(max-width:600px){
+ .topbar{min-height:72px;padding:10px 15px}
+ .tf2-logo{width:47px;height:47px;flex-basis:47px}
+ .server-brand{gap:10px}
+ .server-brand-copy strong{font-size:20px}
+ .server-brand-copy small{font-size:7px;letter-spacing:1px}
+ .top-right{font-size:10px}
+ .site-tabs{width:calc(100% - 24px);grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;margin:13px auto 22px;padding:7px}
+ .site-tabs:before{font-size:8px;letter-spacing:1.2px}
+ .site-tab{min-height:67px;flex-direction:row;align-items:center;justify-content:flex-start;gap:9px;padding:9px;font-size:10px}
+ .site-tab .tab-symbol{width:31px;height:31px;flex:0 0 31px;font-size:17px}
+ .hero{min-height:330px;padding:45px 20px}
+ .main.container,.social-panel,.rules-panel,.calendar-panel,.server-panel{width:calc(100% - 28px)}
+ .main.container{padding:30px 0 48px}
+ .grid{grid-template-columns:1fr;gap:12px}
+ .card{min-height:0;padding:18px}
+ .card .name{font-size:25px}
+ .section-title h2{font-size:23px}
+}
+@media(prefers-reduced-motion:reduce){
+ html{scroll-behavior:auto}
+ *,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+</style>
+
+</head><body id="page-top">
+<!--
+ARTES TF2 PARA O GITHUB:
+assets/tf2/classes/120px-Demoman_emblem_RED.png
+assets/tf2/classes/120px-Engineer_emblem_RED.png
+assets/tf2/classes/120px-Heavy_emblem_RED.png
+assets/tf2/classes/120px-Medic_emblem_RED.png
+assets/tf2/classes/120px-Pyro_emblem_RED.png
+assets/tf2/classes/120px-Scout_emblem_RED.png
+assets/tf2/classes/120px-Sniper_emblem_RED.png
+assets/tf2/classes/120px-Soldier_emblem_RED.png
+assets/tf2/classes/120px-Spy_emblem_RED.png-->
+<div class="topbar" id="top">
+  <a class="server-brand" href="#top" aria-label="Zack Zanni — início">
+    <span class="tf2-logo" aria-hidden="true">
+      <img src="assets/tf2/tf2-logo.png" alt="">
+    </span>
+    <span class="server-brand-copy"><strong>ZACK ZANNI</strong><small>TEAM FORTRESS 2 · SERVIDOR BRASILEIRO</small></span>
+  </a>
+  <div class="top-status"><span class="status"></span><span>MANN CO. NETWORK // ONLINE</span></div>
+  <div class="top-right">EST. 1968</div>
+</div>
+<nav class="site-tabs" role="tablist" aria-label="Menu principal do servidor">
+  <button class="site-tab home-tab" id="tab-home" type="button"><span class="tab-symbol">⌂</span><span class="tab-label">Início</span></button>
+  <button class="site-tab active" id="tab-commands" role="tab" aria-selected="true" aria-controls="commands-panel"><span class="tab-symbol">⚔</span><span class="tab-label">Comandos</span></button>
+  <button class="site-tab" id="tab-rules" role="tab" aria-selected="false" aria-controls="rules-panel"><span class="tab-symbol">▤</span><span class="tab-label">Regras</span></button>
+  <button class="site-tab" id="tab-calendar" role="tab" aria-selected="false" aria-controls="calendar-panel"><span class="tab-symbol">▦</span><span class="tab-label">Calendário</span></button>
+  <button class="site-tab" id="tab-server" role="tab" aria-selected="false" aria-controls="server-panel"><span class="tab-symbol">◈</span><span class="tab-label">Mapas</span></button>
+  <button class="site-tab" id="tab-social" role="tab" aria-selected="false" aria-controls="social-panel"><span class="tab-symbol">◎</span><span class="tab-label">Redes sociais</span></button>
+</nav>
 <header class="hero"><div class="hero-inner"><div class="stamp">Mercenary Information Terminal</div><h1>Zack Zanni<span>Servidor Oficial</span></h1><p class="hero-copy">🇧🇷 Bem-vindo ao servidor oficial! Entre no combate, consulte os comandos, conheça nossas regras e divirta-se no estilo <strong>Casual • 4Fun</strong>! 🎮</p><div class="tags"><span class="tag">🔥 Casual</span><span class="tag">🎉 4Fun</span><span class="tag">🇧🇷 Brasil</span></div></div></header>
 <div class="merc-strip" aria-label="Classes de Team Fortress 2"><div class="merc" data-class="S"><span>SCOUT</span></div><div class="merc" data-class="★"><span>SOLDIER</span></div><div class="merc" data-class="火"><span>PYRO</span></div><div class="merc" data-class="D"><span>DEMOMAN</span></div><div class="merc" data-class="H"><span>HEAVY</span></div><div class="merc" data-class="E"><span>ENGINEER</span></div><div class="merc" data-class="✚"><span>MEDIC</span></div><div class="merc" data-class="⌖"><span>SNIPER</span></div><div class="merc" data-class="♠"><span>SPY</span></div></div>
 <div class="stripe" aria-hidden="true"><div class="r"></div><div class="g"></div><div class="b"></div></div>
@@ -950,6 +1160,11 @@ body{padding-left:var(--zz-sidebar-width)!important}
 <article class="card" data-category="fun" data-search="taunt provocação provocacao animação animacao dança" data-mark="!taunt"><div class="cardtop"><button type="button" class="favorite-command" aria-label="Adicionar aos favoritos" title="Adicionar aos favoritos">☆</button><div class="icon">♫</div><div><div class="name">!taunt</div><div class="category">Taunts • Celebration</div></div><div class="index">12</div></div><p class="desc"> 🎭 Acesse o menu de <strong>provocações</strong> para celebrar vitórias, provocar rivais ou fazer graça.</p><div class="bottom"><span class="prompt">Comando</span><code class="code">!taunt</code><button class="copy" data-copy="!taunt">⧉ Copiar</button></div></article>
 <article class="card" data-category="combat" data-search="ks killstreak sequência sequencia eliminações contador arma" data-mark="!ks"><div class="cardtop"><button type="button" class="favorite-command" aria-label="Adicionar aos favoritos" title="Adicionar aos favoritos">☆</button><div class="icon">★</div><div><div class="name">!ks</div><div class="category">Killstreak • Counter</div></div><div class="index">13</div></div><p class="desc"> 📏 Personalize o contador de <strong>Killstreak</strong> da sua arma. Defina um valor de 0 a 100.</p><div class="bottom"><span class="prompt">Exemplo</span><code class="code">!ks 45</code><button class="copy" data-copy="!ks 45">⧉ Copiar</button></div></article>
 <article class="card" data-category="maps" data-search="nextmap próximo proximo mapa votação vencedor" data-mark="!nextmap"><div class="cardtop"><button type="button" class="favorite-command" aria-label="Adicionar aos favoritos" title="Adicionar aos favoritos">☆</button><div class="icon">➜</div><div><div class="name">!nextmap</div><div class="category">Map Control • Rotation</div></div><div class="index">14</div></div><p class="desc"> 🗺️ Descubra qual mapa venceu a votação e está programado para ser a <strong>próxima batalha</strong>.</p><div class="bottom"><span class="prompt">Comando</span><code class="code">!nextmap</code><button class="copy" data-copy="!nextmap">⧉ Copiar</button></div></article>
+<article class="card" data-category="fun" data-mark="!friendly" data-search="friendly friendly mode amigo amigável amigavel paz proteção protecao spawn não matar nao matar">
+<div class="cardtop"><button aria-label="Adicionar aos favoritos" class="favorite-command" title="Adicionar aos favoritos" type="button">☆</button><div class="icon">☮</div><div><div class="name">!friendly</div><div class="category">Friendly Mode • Protection</div></div><div class="index">15</div></div>
+<p class="desc">☮️ Use este comando no <strong>spawn</strong> para se tornar friendly e receber proteção contra ataques enquanto estiver nesse modo. Assim, ninguém poderá matar você enquanto estiver sendo friendly.</p>
+<div class="bottom"><span class="prompt">Comando</span><code class="code">!friendly</code><button class="copy" data-copy="!friendly">⧉ Copiar</button></div>
+</article>
 <div class="empty" id="empty"><h3>Nenhum comando encontrado!</h3><p>Esse mercenário não está nos registros. Tente outra pesquisa.</p></div></div>
 
 <section class="mini-faq" aria-label="Dúvidas frequentes">
@@ -1039,7 +1254,7 @@ body{padding-left:var(--zz-sidebar-width)!important}
 const tabCommands=document.querySelector('#tab-commands'),tabSocial=document.querySelector('#tab-social'),tabRules=document.querySelector('#tab-rules'),tabCalendar=document.querySelector('#tab-calendar'),tabServer=document.querySelector('#tab-server'),commandsPanel=document.querySelector('#commands-panel'),socialPanel=document.querySelector('#social-panel'),rulesPanel=document.querySelector('#rules-panel'),calendarPanel=document.querySelector('#calendar-panel'),serverPanel=document.querySelector('#server-panel');
 const tabButtons=[tabCommands,tabSocial,tabRules,tabCalendar,tabServer],tabPanels={commands:commandsPanel,social:socialPanel,rules:rulesPanel,calendar:calendarPanel,server:serverPanel};
 function setTab(which){tabButtons.forEach(b=>{const active=b.id==='tab-'+which;b.classList.toggle('active',active);b.setAttribute('aria-selected',String(active));b.setAttribute('tabindex',active?'0':'-1');});Object.entries(tabPanels).forEach(([name,panel])=>{const active=which===name;if(name==='commands')panel.hidden=!active;else panel.classList.toggle('active',active);panel.setAttribute('aria-hidden',String(!active));if(active){panel.classList.remove('panel-enter');void panel.offsetWidth;panel.classList.add('panel-enter');}});const activeBtn=document.querySelector('#tab-'+which);if(activeBtn)activeBtn.focus({preventScroll:true});window.scrollTo({top:document.querySelector('.site-tabs').offsetTop-20,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});}
-tabCommands.addEventListener('click',()=>setTab('commands'));tabSocial.addEventListener('click',()=>setTab('social'));tabRules.addEventListener('click',()=>setTab('rules'));tabCalendar.addEventListener('click',()=>setTab('calendar'));tabServer.addEventListener('click',()=>setTab('server'));
+document.querySelector('#tab-home')?.addEventListener('click',()=>{window.scrollTo({top:0,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});document.querySelector('#tab-home').blur();});tabCommands.addEventListener('click',()=>setTab('commands'));tabSocial.addEventListener('click',()=>setTab('social'));tabRules.addEventListener('click',()=>setTab('rules'));tabCalendar.addEventListener('click',()=>setTab('calendar'));tabServer.addEventListener('click',()=>setTab('server'));
 const search=document.querySelector('#search'),cards=[...document.querySelectorAll('.card')],filters=[...document.querySelectorAll('.filter')],count=document.querySelector('#count'),empty=document.querySelector('#empty'),back=document.querySelector('#backtop');let category='all',favoriteOnly=false;const favoriteKey='zackZanniFavoriteCommands';let favorites=new Set();try{favorites=new Set(JSON.parse(localStorage.getItem(favoriteKey)||'[]'))}catch(e){}const favoriteTotal=document.querySelector('#favorite-total'),favoriteToggle=document.querySelector('#favorites-toggle');function saveFavorites(){try{localStorage.setItem(favoriteKey,JSON.stringify([...favorites]))}catch(e){}}function updateFavoriteTotal(){favoriteTotal.textContent=favorites.size;favoriteToggle.setAttribute('aria-pressed',String(favoriteOnly));favoriteToggle.classList.toggle('active',favoriteOnly);favoriteToggle.firstChild.textContent=favoriteOnly?'★ MOSTRANDO FAVORITOS ':'☆ MOSTRAR FAVORITOS '}function norm(s){return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'')}function filter(){const q=norm(search.value.trim());let n=0;cards.forEach(c=>{const hay=norm(c.querySelector('.name').textContent+' '+c.querySelector('.desc').textContent+' '+(c.dataset.search||''));const key=c.querySelector('.name').textContent.trim(),saved=favorites.has(key),show=hay.includes(q)&&(category==='all'||c.dataset.category===category)&&(!favoriteOnly||saved);c.hidden=!show;if(show)n++;const star=c.querySelector('.favorite-command');star.classList.toggle('saved',saved);star.setAttribute('aria-pressed',String(saved));star.textContent=saved?'★':'☆';star.title=saved?'Remover dos favoritos':'Adicionar aos favoritos'});count.textContent=`${n} / ${cards.length} COMANDOS`;empty.style.display=n?'none':'block';updateFavoriteTotal()}favoriteToggle.addEventListener('click',()=>{favoriteOnly=!favoriteOnly;filter()});cards.forEach(c=>c.querySelector('.favorite-command').addEventListener('click',()=>{const key=c.querySelector('.name').textContent.trim();favorites.has(key)?favorites.delete(key):favorites.add(key);saveFavorites();filter()}));filters.forEach(b=>b.addEventListener('click',()=>{filters.forEach(x=>{x.classList.remove('active');x.setAttribute('aria-pressed','false')});b.classList.add('active');b.setAttribute('aria-pressed','true');category=b.dataset.filter;filter()}));search.addEventListener('input',filter);document.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='f'){e.preventDefault();search.focus();search.select()}if(e.key==='/'&&!['INPUT','TEXTAREA'].includes(document.activeElement.tagName)){e.preventDefault();search.focus()}if(e.key==='Escape'&&document.activeElement===search){search.value='';search.blur();filter()}});document.querySelectorAll('.copy').forEach(b=>b.addEventListener('click',async()=>{const card=b.closest('.card');const val=card?.querySelector('.bottom .code')?.textContent?.trim()||b.dataset.copy,orig='⧉ Copiar';try{await navigator.clipboard.writeText(val)}catch{const t=document.createElement('textarea');t.value=val;t.style.position='fixed';t.style.opacity='0';document.body.append(t);t.select();document.execCommand('copy');t.remove()}b.textContent='✓ COPIADO';b.classList.add('done');setTimeout(()=>{b.textContent=orig;b.classList.remove('done')},1500)}));window.addEventListener('scroll',()=>back.classList.toggle('visible',scrollY>400),{passive:true});
 back.addEventListener('click',()=>scrollTo({top:0,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'}));
 let calendarCursor=new Date();calendarCursor.setDate(1);
